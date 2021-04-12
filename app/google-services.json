@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "714211008178",
+    "project_id": "ebapp-3574f",
+    "storage_bucket": "ebapp-3574f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714211008178:android:e511cde1dff9e9758db3ab",
+        "android_client_info": {
+          "package_name": "com.proyecto.ebabotndepnico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "714211008178-u4r4qg456j0tnc3me6npkmitp6k4fh7m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAltR4AQSgqBzpCDZIFTmnG7U9fraaTfZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "714211008178-u4r4qg456j0tnc3me6npkmitp6k4fh7m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

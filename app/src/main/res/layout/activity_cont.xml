@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gris"
+    tools:context=".cont">
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="261dp"
+        android:layout_height="91dp"
+        android:gravity="center"
+        android:text="Registro de Contactos"
+        android:textSize="30dp"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="224dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="122dp"
+        android:layout_height="161dp"
+        app:srcCompat="@drawable/ic_baseline_settings_24"
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="36dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="387dp"
+        android:layout_height="161dp"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="342dp" />
+
+    <LinearLayout
+        android:layout_width="286dp"
+        android:layout_height="125dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="557dp">
+
+        <Button
+            android:id="@+id/btnNewCon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde"
+            android:text="Registrar Contactos" />
+
+        <Button
+            android:id="@+id/btnRS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde"
+            android:text="Siguiente" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
