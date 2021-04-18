@@ -18,10 +18,12 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class contactos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactos);
 
+        this.setTitle("Configuración Aplicativo 2/4");
 
         etNombreCon = findViewById(R.id.etNombreCont);
         etTel = findViewById(R.id.etTel);
@@ -70,6 +73,15 @@ public class contactos extends AppCompatActivity {
         Bundle bundle = this.getIntent().getExtras();
         String correo = bundle.getString("correo");
         guardarContacto(correo);
+
+        btnSiguienteRS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mensajePred(correo);
+
+            }
+        });
 
     }
 
@@ -187,6 +199,13 @@ public class contactos extends AppCompatActivity {
 
     }
 
+    private void mensajePred(String correo){
+        Intent i = new Intent(this, msj.class);
+         i.putExtra("correo" , correo);
+         i.putExtra("nombre" , etNombreCon.getText().toString());
+        startActivity(i);
+
+    }
 
 
 }
