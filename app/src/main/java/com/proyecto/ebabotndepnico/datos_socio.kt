@@ -18,14 +18,15 @@ class datos_socio : AppCompatActivity() {
 
         title = "Configuración Aplicativo 1/4"
 
-        btnContactos.setOnClickListener {
-            sig()
-        }
+
 
         val bundle = intent.extras
         val correo = bundle?.getString("correo")
         registro(correo.toString())
 
+        btnContactos.setOnClickListener {
+            sig(correo.toString())
+        }
 
     }
 
@@ -42,6 +43,7 @@ class datos_socio : AppCompatActivity() {
                     )
 
                 msjAceptado()
+
             }
 
             else {
@@ -75,11 +77,13 @@ class datos_socio : AppCompatActivity() {
 
     }
 
-    private fun sig(){
-        val contactos = Intent(this, Tratamiento_Datos::class.java)
-        startActivity(contactos)
+
+    private fun sig(correo:String) {
+        val registro = Intent(this, contactos()::class.java).apply {
+            putExtra("correo", correo)
+        }
+
+        startActivity(registro)
     }
-
-
 }
 

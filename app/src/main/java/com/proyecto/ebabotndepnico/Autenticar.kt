@@ -34,7 +34,7 @@ class Autenticar : AppCompatActivity() {
                     ).addOnCompleteListener {
 
                         if (it.isSuccessful) {
-                            enviarCorreo(it.result?.user?.email?:"") // propia función activando boton siguiente
+                            enviarCorreo(it.result?.user?.email?:"")
                         } else {
 
                             registroAlertaError()
@@ -55,7 +55,7 @@ class Autenticar : AppCompatActivity() {
 
                         if (it.isSuccessful) {
 
-                            mostrarDatos(it.result?.user?.email ?: "", ProviderType.BASIC)
+                            enviarCorreo(it.result?.user?.email?:"")
 
                         } else {
 
@@ -90,7 +90,7 @@ class Autenticar : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun mostrarDatos(correo: String, provider: ProviderType) {
+    /*private fun mostrarDatos(correo: String, provider: ProviderType) {
 
         val mostrarDatos = Intent(this, Mostrar_Datos::class.java).apply {
             putExtra("correo", correo)
@@ -98,7 +98,8 @@ class Autenticar : AppCompatActivity() {
         }
 
         startActivity(mostrarDatos)
-    }
+    }*/
+
 
     private fun enviarCorreo(correo:String) {
         val registro = Intent(this, datos_socio()::class.java).apply {

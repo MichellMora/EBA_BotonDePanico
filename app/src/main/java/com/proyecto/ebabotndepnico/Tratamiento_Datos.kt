@@ -38,8 +38,8 @@ class Tratamiento_Datos : AppCompatActivity() {
 
         btncont.setOnClickListener{
 
-            val reg_datossocio = Intent(this, cont::class.java)
-            startActivity(reg_datossocio)
+            val reg_contactos = Intent(this, contactos::class.java)
+            startActivity(reg_contactos)
 
         }
     }
