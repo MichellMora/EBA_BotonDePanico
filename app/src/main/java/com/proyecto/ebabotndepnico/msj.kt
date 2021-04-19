@@ -58,7 +58,7 @@ class msj : AppCompatActivity() {
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Datos Registrados")
-        builder.setMessage("Se han registrado tus datos personales")
+        builder.setMessage("Mensaje Guardado")
         builder.setPositiveButton("Aceptar",null)
         val dialog: AlertDialog =builder.create()
         dialog.show()
@@ -68,7 +68,7 @@ class msj : AppCompatActivity() {
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
-        builder.setMessage("Uno o todos los campos estan vacios")
+        builder.setMessage("Campo vacio")
         builder.setPositiveButton("Aceptar",null)
         val dialog: AlertDialog =builder.create()
         dialog.show()

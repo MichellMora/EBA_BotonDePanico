@@ -74,6 +74,15 @@ public class contactos extends AppCompatActivity {
         String correo = bundle.getString("correo");
         guardarContacto(correo);
 
+        btnSiguienteRS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mensajePred(correo);
+
+            }
+        });
+
 
     }
 
@@ -199,21 +208,14 @@ public class contactos extends AppCompatActivity {
             }
         });
 
-        btnSiguienteRS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                mensajePred(correo, listaCont);
-
-            }
-        });
 
     }
 
-    private void mensajePred(String correo, List contactos1){
+    private void mensajePred(String correo){
+
         Intent i = new Intent(this, msj.class);
-         i.putExtra("correo" , correo);
-         i.putExtra("contacto1" , (CharSequence) contactos1);
+        i.putExtra("correo" , correo);
         startActivity(i);
 
     }
