@@ -19,11 +19,13 @@ class msj : AppCompatActivity() {
 
         val bundle = intent.extras
         val correo = bundle?.getString("correo")
+        //val contacto = bundle?.getCharSequence("contacto1")
+        //etMsjPred.setText(contacto)
         mensaje(correo.toString())
 
         btnSigPrincipal.setOnClickListener{
 
-            sigPrincipal(correo.toString());
+            sigPrincipal(correo.toString());//,nombre.toString());
 
         }
 
@@ -73,11 +75,12 @@ class msj : AppCompatActivity() {
 
     }
 
-    private fun sigPrincipal(correo:String) {
-        val registro = Intent(this, Principal::class.java).apply {
+    private fun sigPrincipal(correo:String){//, nombre:String) {
+        val CorreoPrincipal = Intent(this, Pag_Principal::class.java).apply {
             putExtra("correo", correo)
+            //putExtra("nombre", nombre)
         }
 
-        startActivity(registro)
+        startActivity(CorreoPrincipal)
     }
 }

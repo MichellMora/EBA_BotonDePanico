@@ -74,14 +74,6 @@ public class contactos extends AppCompatActivity {
         String correo = bundle.getString("correo");
         guardarContacto(correo);
 
-        btnSiguienteRS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                mensajePred(correo);
-
-            }
-        });
 
     }
 
@@ -116,6 +108,7 @@ public class contactos extends AppCompatActivity {
                 String nombre = cursor.getString(iNombre);
                 String numero = cursor.getString(iTelefono);
 
+
                 numero = numero.
                         replace(" ","").
                         replace("(","").
@@ -125,8 +118,12 @@ public class contactos extends AppCompatActivity {
 
                 etNombreCon.setText(nombre);
                 etTel.setText(numero);
+
+
+
             }
         }
+
     }
 
     public void guardarContacto(String correo){
@@ -143,18 +140,23 @@ public class contactos extends AppCompatActivity {
             {
                 Map<String, Object> map = new HashMap<>();
 
-                map.put("Nombre", etNombreCon.getText().toString());
+                String nombre = etNombreCon.getText().toString();
+
+                map.put("Nombre", nombre );
                 map.put("Telefono", etTel.getText().toString());
 
                 bdContactos
                         .collection("usuarios").document(correo)
-                        .collection("contactos").document(etNombreCon.getText().toString()).set(map);
+                        .collection("contactos").document(nombre).set(map);
 
                 Toast.makeText(contactos.this, "Contacto Añadido", Toast.LENGTH_LONG).show();
 
 
 
-                enlistar();
+                enlistar(correo);
+
+
+
 
 
             }
@@ -177,10 +179,10 @@ public class contactos extends AppCompatActivity {
         toast1.show();
     }
 
-    public void enlistar(){
+    public void enlistar(String correo){
 
         boolean existe = false;
-        listaCont.add(etNombreCon.getText().toString());
+        listaCont.add(etNombreCon.getText().toString() + " " + etTel.getText().toString());
         AA.notifyDataSetChanged();
 
 
@@ -197,12 +199,21 @@ public class contactos extends AppCompatActivity {
             }
         });
 
+        btnSiguienteRS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mensajePred(correo, listaCont);
+
+            }
+        });
+
     }
 
-    private void mensajePred(String correo){
+    private void mensajePred(String correo, List contactos1){
         Intent i = new Intent(this, msj.class);
          i.putExtra("correo" , correo);
-         i.putExtra("nombre" , etNombreCon.getText().toString());
+         i.putExtra("contacto1" , (CharSequence) contactos1);
         startActivity(i);
 
     }
