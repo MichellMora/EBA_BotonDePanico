@@ -1,11 +1,12 @@
 package com.proyecto.ebabotndepnico
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_autenticar.*
 
 class Autenticar : AppCompatActivity() {
@@ -27,14 +28,16 @@ class Autenticar : AppCompatActivity() {
         btnReg.setOnClickListener {
             if (etCorreo.text.isNotEmpty() && etPass.text.isNotEmpty()) {
 
-                FirebaseAuth.getInstance()
-                    .createUserWithEmailAndPassword(
+
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                         etCorreo.text.toString(),
                         etPass.text.toString()
                     ).addOnCompleteListener {
 
                         if (it.isSuccessful) {
-                            enviarCorreo(it.result?.user?.email?:"")
+                            //val ID = FirebaseAuth.getInstance().currentUser
+                            val ID = FirebaseAuth.getInstance().uid
+                            enviarCorreo(it.result?.user?.email?:"", ID.toString())
                         } else {
 
                             registroAlertaError()
@@ -44,7 +47,7 @@ class Autenticar : AppCompatActivity() {
 
         }
 
-        btnIng.setOnClickListener {
+       btnIng.setOnClickListener {
             if (etCorreo.text.isNotEmpty() && etPass.text.isNotEmpty()) {
 
                 FirebaseAuth.getInstance()
@@ -54,8 +57,8 @@ class Autenticar : AppCompatActivity() {
                     ).addOnCompleteListener {
 
                         if (it.isSuccessful) {
-
-                            enviarCorreo(it.result?.user?.email?:"")
+                            val ID = FirebaseAuth.getInstance().uid
+                            panPrincipal(it.result?.user?.email?:"",ID.toString())
 
                         } else {
 
@@ -101,12 +104,21 @@ class Autenticar : AppCompatActivity() {
     }*/
 
 
-    private fun enviarCorreo(correo:String) {
+    private fun enviarCorreo(correo:String, ID: String) {
         val registro = Intent(this, datos_socio()::class.java).apply {
             putExtra("correo", correo)
+            putExtra("ID", ID)
         }
 
         startActivity(registro)
     }
 
+    private fun panPrincipal(correo:String, ID: String) {
+        val registro = Intent(this, btn_edit()::class.java).apply {
+            putExtra("correo", correo)
+            putExtra("ID", ID)
+        }
+
+        startActivity(registro)
+    }
 }

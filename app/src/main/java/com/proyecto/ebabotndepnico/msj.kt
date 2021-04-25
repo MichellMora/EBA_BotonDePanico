@@ -19,30 +19,37 @@ class msj : AppCompatActivity() {
 
         val bundle = intent.extras
         val correo = bundle?.getString("correo")
+        val ID = bundle?.getString("ID")
         //val contacto = bundle?.getCharSequence("contacto1")
-        //etMsjPred.setText(contacto)
-        mensaje(correo.toString())
+        etMsjPred.setText(ID)
+        mensaje(correo.toString(),ID.toString())
 
         btnSigPrincipal.setOnClickListener{
 
-            sigPrincipal(correo.toString());//,nombre.toString());
+            //sigPrincipal(correo.toString(),ID.toString(),IDmsj.toString());//,nombre.toString());
 
         }
 
     }
 
-    private fun mensaje(correo:String){
+    private fun mensaje(correo:String, ID:String){
 
         btnAñadirMsj.setOnClickListener{
+            val IDmsj =
             if (etMsjPred.text.isNotEmpty()) {
-                bd.collection("usuarios").document(correo)
-                    .collection("mensaje").document("mensaje")
+                var IDmsj = bd.collection("usuarios").document().id
+                bd.collection("usuarios").document(ID)
+                    .collection("mensaje").document(IDmsj)
                     .set(
                     hashMapOf("mensaje" to etMsjPred.text.toString()
                     )
 
                 )
+                btnSigPrincipal.setOnClickListener{
 
+                    sigPrincipal(correo,ID,IDmsj);//,nombre.toString());
+
+                }
                 msjAceptado()
 
             }
@@ -75,9 +82,11 @@ class msj : AppCompatActivity() {
 
     }
 
-    private fun sigPrincipal(correo:String){//, nombre:String) {
+    private fun sigPrincipal(correo:String,ID: String, IDmsj:String){//, nombre:String) {
         val CorreoPrincipal = Intent(this, Pag_Principal::class.java).apply {
             putExtra("correo", correo)
+            putExtra("ID", ID)
+            putExtra("IDmsj", IDmsj)
             //putExtra("nombre", nombre)
         }
 

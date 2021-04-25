@@ -72,13 +72,16 @@ public class contactos extends AppCompatActivity {
 
         Bundle bundle = this.getIntent().getExtras();
         String correo = bundle.getString("correo");
-        guardarContacto(correo);
+        String ID = bundle.getString("ID");
+        guardarContacto(correo,ID);
+
+        etNombreCon.setText(ID);
 
         btnSiguienteRS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                mensajePred(correo);
+               btn_edit(correo, ID);
 
             }
         });
@@ -135,7 +138,7 @@ public class contactos extends AppCompatActivity {
 
     }
 
-    public void guardarContacto(String correo){
+    public void guardarContacto(String correo, String ID){
 
      btnGuardarCon.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -155,14 +158,14 @@ public class contactos extends AppCompatActivity {
                 map.put("Telefono", etTel.getText().toString());
 
                 bdContactos
-                        .collection("usuarios").document(correo)
-                        .collection("contactos").document(nombre).set(map);
+                        .collection("usuarios").document(ID)
+                        .collection("contactos").document().set(map);
 
                 Toast.makeText(contactos.this, "Contacto Añadido", Toast.LENGTH_LONG).show();
 
 
 
-                enlistar(correo);
+                enlistar();
 
 
 
@@ -188,7 +191,7 @@ public class contactos extends AppCompatActivity {
         toast1.show();
     }
 
-    public void enlistar(String correo){
+    public void enlistar(){
 
         boolean existe = false;
         listaCont.add(etNombreCon.getText().toString() + " " + etTel.getText().toString());
@@ -212,10 +215,11 @@ public class contactos extends AppCompatActivity {
 
     }
 
-    private void mensajePred(String correo){
+    private void btn_edit(String correo, String ID){
 
-        Intent i = new Intent(this, msj.class);
+        Intent i = new Intent(this, btn_edit.class);
         i.putExtra("correo" , correo);
+        i.putExtra("ID" , ID);
         startActivity(i);
 
     }

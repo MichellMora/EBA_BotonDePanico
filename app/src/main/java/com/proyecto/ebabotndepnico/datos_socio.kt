@@ -22,27 +22,30 @@ class datos_socio : AppCompatActivity() {
 
         val bundle = intent.extras
         val correo = bundle?.getString("correo")
-        registro(correo.toString())
+        val ID = bundle?.getString("ID")
+        registro(correo.toString(),ID.toString())
 
-        btnContactos.setOnClickListener {
-            sig(correo.toString())
-        }
+        etNombre.setText(ID)
 
     }
 
-    private fun registro(correo:String) {
+    private fun registro(correo:String, ID: String) {
 
         btnAct.setOnClickListener {
             if (etNombre.text.isNotEmpty() && etEdad.text.isNotEmpty() && etGenero.text.isNotEmpty()) {
-                bd.collection("usuarios").document(correo).set(
+                //var ID = bd.collection("usuarios").document().id
+                bd.collection("usuarios").document(ID).set(
                     hashMapOf("nombre" to etNombre.text.toString(),
                         "edad" to etEdad.text.toString(),
-                        "genero" to etGenero.text.toString()
+                        "genero" to etGenero.text.toString(),
+                            "correo" to correo
                     )
 
                     )
-
                 msjAceptado()
+                btnContactos.setOnClickListener {
+                    sig(correo,ID)
+                }
 
             }
 
@@ -53,6 +56,7 @@ class datos_socio : AppCompatActivity() {
             }
 
         }
+
     }
 
     private fun msjError(){
@@ -78,9 +82,10 @@ class datos_socio : AppCompatActivity() {
     }
 
 
-    private fun sig(correo:String) {
+    private fun sig(correo:String, ID:String) {
         val registro = Intent(this, contactos()::class.java).apply {
             putExtra("correo", correo)
+            putExtra("ID",ID)
         }
 
         startActivity(registro)
