@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.proyecto.ebabotndepnico">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,15 +15,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EBABotónDePánico">
-        <activity android:name=".btn_edit"></activity>
+        <activity android:name="Inicio_app.SplashScreen" />
+        <activity android:name=".btn_edit" />
         <activity android:name=".Pag_Principal" />
-        <activity android:name=".Principal2" />
+        <!--<activity android:name=".Principal2" />!-->
         <activity android:name=".msj" />
         <activity android:name=".contactos" />
         <activity android:name=".datos_socio" />
-        <activity android:name=".Tratamiento_Datos" />
-        <activity android:name=".Mostrar_Datos" />
-        <activity android:name=".Autenticar">
+        <activity android:name=".Tratamiento_Datos"/>
+        <activity android:name="Inicio_Sesion_User.Mostrar_Datos" />
+        <activity android:name=".Autenticar"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -7,10 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.proyecto.ebabotndepnico.R.style.SplashTheme
 import kotlinx.android.synthetic.main.activity_autenticar.*
 
 class Autenticar : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //Thread.sleep(2000)
+        setTheme(SplashTheme)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_autenticar)
 

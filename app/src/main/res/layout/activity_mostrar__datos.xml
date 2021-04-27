@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gris"
-    tools:context=".Mostrar_Datos">
+    tools:context="Inicio_Sesion_User.Mostrar_Datos">
 
     <LinearLayout
         android:id="@+id/linearLayout"
