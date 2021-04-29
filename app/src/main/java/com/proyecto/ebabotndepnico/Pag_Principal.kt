@@ -21,17 +21,13 @@ class Pag_Principal : AppCompatActivity() {
         setContentView(R.layout.activity_pag__principal)
 
         val bundle = intent.extras
-        val correo = bundle?.getString("correo")
         val ID = bundle?.getString("ID")
-        val IDmsj = bundle?.getString("IDmsj")
-        TraerDatos(correo.toString(),
-                ID.toString(),
-                IDmsj.toString())
+        TraerDatos(ID.toString())
 
 
     }
 
-   private fun TraerDatos(correo: String, ID: String, IDmsj: String) {
+   private fun TraerDatos(ID: String) {
 
        bd.collection("usuarios").document(ID).collection("contactos").
        get().addOnSuccessListener{ resultado->

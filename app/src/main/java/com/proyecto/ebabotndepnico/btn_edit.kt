@@ -30,7 +30,7 @@ class btn_edit : AppCompatActivity() {
             var popup = PopupWindow(this)
             val view =layoutInflater.inflate(R.layout.add_boton_popup, null)
             popup.contentView = view
-            popup.showAtLocation(view, 85, 85, 100)
+            popup.showAtLocation(view, 200, 200, 200)
         }
     }
 
