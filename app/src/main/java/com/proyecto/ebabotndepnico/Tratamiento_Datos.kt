@@ -38,7 +38,7 @@ class Tratamiento_Datos : AppCompatActivity() {
 
         btncont.setOnClickListener{
 
-            val reg_contactos = Intent(this, contactos::class.java)
+            val reg_contactos = Intent(this, Autenticar::class.java)
             startActivity(reg_contactos)
 
         }

@@ -13,9 +13,6 @@ import kotlinx.android.synthetic.main.activity_autenticar.*
 class Autenticar : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        //Thread.sleep(2000)
-        setTheme(SplashTheme)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_autenticar)
 

@@ -5,7 +5,7 @@
     <!--<item android:drawable="@color/verde"/>!-->
     <item>
         <bitmap
-            android:src="mipmap\mipmap-hdpi\logo_round"
+            android:src="@drawable/logo"
             android:gravity="center"/>
     </item>
 
