@@ -205,12 +205,12 @@
             android:layout_height="23dp" />
 
         <Button
-            android:id="@+id/btnGuardar"
+            android:id="@+id/btnSigPr"
             android:layout_width="152dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:clickable="true"
-            android:text="Añadir Botón" />
+            android:text="Guardar" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

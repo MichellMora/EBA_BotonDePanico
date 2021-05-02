@@ -1,10 +1,8 @@
 package com.proyecto.ebabotndepnico
 
-import Inicio_app.Historieta
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -12,7 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_btn_edit.*
-import kotlinx.android.synthetic.main.activity_datos_socio.*
+import kotlinx.android.synthetic.main.activity_popup_edboton.*
 
 
 class btn_edit : AppCompatActivity() {
@@ -27,25 +25,53 @@ class btn_edit : AppCompatActivity() {
         val bundle = intent.extras
         val ID = bundle?.getString("ID")
 
-
+        //Crear o motrar datos de botones
         DatosAcoso(ID.toString())
         DatosInfarto(ID.toString())
         DatosRobo(ID.toString())
         DatosAlzheimer(ID.toString())
 
-
-
         val correo = bundle?.getString("correo")
         val IDmsj = bundle?.getString("IDmsj")
-
 
         TraerDatos(correo.toString(),
                 ID.toString(),
                 IDmsj.toString())
-
-
     }
 
+    private fun enviarDatosBtn(ID: String, IDbtn1: String, msj:String){
+
+        btnSigPr.setOnClickListener{
+
+            if(btn1.text.isEmpty() && btn2.text.isEmpty() && btn3.text.isEmpty() && btn4.text.isEmpty() )
+                {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Error")
+                    builder.setMessage("Debes tener minimo un botón de pánico para continuar")
+                    builder.setPositiveButton("Aceptar", null)
+                    val dialog: AlertDialog = builder.create()
+                    dialog.show()
+                }
+            else
+                {
+                    val bundle = intent.extras
+                    val correo = bundle?.getString("correo")
+
+                    val Pa_Principal = Intent(this, Pag_Principal::class.java).apply {
+                        putExtra("correo", correo)
+                        putExtra("ID", ID)
+                        putExtra("IDbtn", IDbtn1)
+                        putExtra("msj", msj)
+                    }
+
+                    startActivity(Pa_Principal)
+                }
+
+
+
+        }
+
+    }
 
     //Creación y Consulta de datos Acoso
 
@@ -79,6 +105,8 @@ class btn_edit : AppCompatActivity() {
 
     private fun mostrarDatosbtn1(ID: String) {
 
+        val IDbtnAcoso = "jRHaBP85jYEEPZjHhlEP"
+
         bd.collection("usuarios").document(ID.toString())
             .collection("botones").document("jRHaBP85jYEEPZjHhlEP").get().addOnSuccessListener {
 
@@ -86,12 +114,17 @@ class btn_edit : AppCompatActivity() {
                 msj1.setText(it.get("Mensaje") as String?)
             }
 
+        enviarDatosBtn(ID, IDbtnAcoso, msj1.getText().toString())
+
         val IDbtn1 = bd.collection("usuarios").document(ID.toString())
             .collection("botones").document("jRHaBP85jYEEPZjHhlEP").id
 
         btn1.setOnClickListener{
             boton(btn1,ID,IDbtn1,msj1) }
 
+        elm_btn1.setOnClickListener{
+            elmbtn(btn1,ID,IDbtn1,msj1)
+        }
     }
 
     //Crear y consultar datos infarto
@@ -141,6 +174,9 @@ class btn_edit : AppCompatActivity() {
         btn2.setOnClickListener{
             boton(btn2,ID,IDbtn2,msj2) }
 
+        elm_btn2.setOnClickListener{
+            elmbtn(btn2,ID,IDbtn2,msj2)
+        }
     }
 
     // Crear y consultar datos robo
@@ -192,6 +228,9 @@ class btn_edit : AppCompatActivity() {
         btn3.setOnClickListener{
             boton(btn3,ID,IDbtn3,msj3) }
 
+        elm_btn3.setOnClickListener{
+            elmbtn(btn3,ID,IDbtn3,msj3)
+        }
     }
 
     // Crear y consultar datos alzheimer
@@ -243,11 +282,48 @@ class btn_edit : AppCompatActivity() {
         btn4.setOnClickListener{
             boton(btn4,ID,IDbtn4,msj4) }
 
+        elm_btn4.setOnClickListener{
+            elmbtn(btn4,ID,IDbtn4,msj4)
+        }
+
     }
 
+    private fun elmbtn (btn:Button,ID:String, IDbtn1:String, msjbtn:TextView){
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Eliminar Botón")
+        builder.setMessage("¿Estas segur@ de eliminar este botón?")
+            with(builder){
+                setPositiveButton("Borrar Botón"){
+                        dialog, which ->
+
+                    bd.collection("usuarios").document(ID)
+                        .collection("botones").document(IDbtn1)
+                        .set(
+                            kotlin.collections.hashMapOf(
+                                "Nombre" to "",
+                                "Mensaje" to ""
+                            )
+
+                        )
+
+                    btn.text = ""
+                    msjbtn.text = ""
+
+                }
+
+                setNegativeButton("Cancelar"){dialog, which->
+                    android.util.Log.d("Main", "Negativo")
+                }
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+            }
+
+        }
 
 
     private  fun  boton(btn:Button,ID:String, IDbtn1:String, msjbtn:TextView){
+
 
             val builder  =AlertDialog.Builder(this)
             val inflater=layoutInflater
@@ -255,13 +331,20 @@ class btn_edit : AppCompatActivity() {
             val etNombtn =confBtn.findViewById<EditText>(R.id.etNombrebtn)
             val etmsj = confBtn.findViewById<EditText>(R.id.etMsjBtn)
 
-
             with(builder){
-                setTitle("Cambiar nombre de botón")
                 setPositiveButton("OK"){
                     dialog, which ->
 
-                       bd.collection("usuarios").document(ID)
+                    if(etNombtn.text.isEmpty() || etmsj.text.isEmpty()){
+                        val builder = AlertDialog.Builder(this@btn_edit)
+                        builder.setTitle("Error")
+                        builder.setMessage("Uno o ambos campos estan vacios")
+                        builder.setPositiveButton("Aceptar", null)
+                        val dialog: AlertDialog = builder.create()
+                        dialog.show()
+                    }
+                    else{
+                        bd.collection("usuarios").document(ID)
                             .collection("botones").document(IDbtn1)
                             .set(
                                 hashMapOf(
@@ -271,8 +354,12 @@ class btn_edit : AppCompatActivity() {
 
                             )
 
-                      btn.text = etNombtn.text.toString()
-                      msjbtn.text = etmsj.text.toString()
+                        btn.text = etNombtn.text.toString()
+                        msjbtn.text = etmsj.text.toString()
+
+
+                    }
+
 
                 }
 
