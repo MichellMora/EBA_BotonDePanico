@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EBABotónDePánico">
-        <activity android:name="Inicio_app.Historieta"></activity>
+        <activity android:name="Boton_de_panico.PopWindow_EditarBoton"></activity>
+        <activity android:name="Inicio_app.Historieta" />
         <activity android:name="Inicio_app.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

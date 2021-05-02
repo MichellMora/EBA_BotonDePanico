@@ -35,7 +35,6 @@ class msj : AppCompatActivity() {
     private fun mensaje(correo:String, ID:String){
 
         btnAñadirMsj.setOnClickListener{
-            val IDmsj =
             if (etMsjPred.text.isNotEmpty()) {
                 var IDmsj = bd.collection("usuarios").document().id
                 bd.collection("usuarios").document(ID)
