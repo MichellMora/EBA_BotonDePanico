@@ -1,5 +1,6 @@
 package com.proyecto.ebabotndepnico
 
+import Boton_de_panico.Pag_Principal
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -4,9 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import com.proyecto.ebabotndepnico.Autenticar
 import com.proyecto.ebabotndepnico.R
-import com.proyecto.ebabotndepnico.Tratamiento_Datos
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.proyecto.ebabotndepnico
+package Boton_de_panico
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +9,8 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.firestore.FirebaseFirestore
+import com.proyecto.ebabotndepnico.R
 import kotlinx.android.synthetic.main.activity_btn_edit.*
-import kotlinx.android.synthetic.main.activity_popup_edboton.*
 
 
 class btn_edit : AppCompatActivity() {
@@ -39,7 +39,7 @@ class btn_edit : AppCompatActivity() {
                 IDmsj.toString())
     }
 
-    private fun enviarDatosBtn(ID: String, IDbtn1: String, msj:String){
+    private fun enviarDatosBtn(ID: String, IDbtn: String, msj:String, nomBoton:String){
 
         btnSigPr.setOnClickListener{
 
@@ -60,8 +60,9 @@ class btn_edit : AppCompatActivity() {
                     val Pa_Principal = Intent(this, Pag_Principal::class.java).apply {
                         putExtra("correo", correo)
                         putExtra("ID", ID)
-                        putExtra("IDbtn", IDbtn1)
+                        putExtra("IDbtn", IDbtn)
                         putExtra("msj", msj)
+                        putExtra("nomBoton", nomBoton)
                     }
 
                     startActivity(Pa_Principal)
@@ -114,7 +115,7 @@ class btn_edit : AppCompatActivity() {
                 msj1.setText(it.get("Mensaje") as String?)
             }
 
-        enviarDatosBtn(ID, IDbtnAcoso, msj1.getText().toString())
+        enviarDatosBtn(ID, IDbtnAcoso, msj1.getText().toString(),btn1.getText().toString())
 
         val IDbtn1 = bd.collection("usuarios").document(ID.toString())
             .collection("botones").document("jRHaBP85jYEEPZjHhlEP").id

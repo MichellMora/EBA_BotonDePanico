@@ -1,6 +1,5 @@
 package com.proyecto.ebabotndepnico;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,22 +13,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import Boton_de_panico.btn_edit;
 
 public class contactos extends AppCompatActivity {
 
@@ -193,7 +188,6 @@ public class contactos extends AppCompatActivity {
 
     public void enlistar(){
 
-        boolean existe = false;
         listaCont.add(etNombreCon.getText().toString() + " " + etTel.getText().toString());
         AA.notifyDataSetChanged();
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Pag_Principal">
+    tools:context="Boton_de_panico.Pag_Principal">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -60,12 +60,27 @@
         <TextView
             android:id="@+id/tvDatos"
             android:layout_width="match_parent"
-            android:layout_height="149dp" />
+            android:layout_height="58dp" />
 
         <TextView
             android:id="@+id/tvDatos2"
             android:layout_width="match_parent"
-            android:layout_height="149dp" />
+            android:layout_height="60dp" />
+
+        <TextView
+            android:id="@+id/tvDatos3"
+            android:layout_width="match_parent"
+            android:layout_height="54dp" />
+
+        <TextView
+            android:id="@+id/tvDatos4"
+            android:layout_width="match_parent"
+            android:layout_height="54dp" />
+
+        <TextView
+            android:id="@+id/tvDatos5"
+            android:layout_width="match_parent"
+            android:layout_height="54dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
