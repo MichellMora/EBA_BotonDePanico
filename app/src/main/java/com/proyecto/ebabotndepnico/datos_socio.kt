@@ -3,6 +3,8 @@ package com.proyecto.ebabotndepnico
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_datos_socio.*
@@ -11,6 +13,7 @@ class datos_socio : AppCompatActivity() {
 
     private val bd = FirebaseFirestore.getInstance()
 
+    lateinit var opciones:Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,26 +21,29 @@ class datos_socio : AppCompatActivity() {
 
         title = "Configuración Aplicativo 1/4"
 
-
-
         val bundle = intent.extras
         val correo = bundle?.getString("correo")
         val ID = bundle?.getString("ID")
         registro(correo.toString(),ID.toString())
 
         etNombre.setText(ID)
-
+        
+        //AQUI QUEDE
+        val lista = listOf("Femenino", "Maculino", "Otro")
+        opciones = findViewById(R.id.etGenero)
+        val adaptador = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista)
+        //AQUI QUEDE
     }
 
     private fun registro(correo:String, ID: String) {
 
         btnAct.setOnClickListener {
-            if (etNombre.text.isNotEmpty() && etEdad.text.isNotEmpty() && etGenero.text.isNotEmpty()) {
+            if (etNombre.text.isNotEmpty() && etEdad.text.isNotEmpty() && etGenero.isActivated) {
                 //var ID = bd.collection("usuarios").document().id
                 bd.collection("usuarios").document(ID).set(
                     hashMapOf("nombre" to etNombre.text.toString(),
                         "edad" to etEdad.text.toString(),
-                        "genero" to etGenero.text.toString(),
+                        "genero" to etGenero.toString(),
                             "correo" to correo
                     )
 

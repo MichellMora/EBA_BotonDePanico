@@ -61,21 +61,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="86dp"
+            android:layout_height="84dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvNombre"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Nombre"
                 android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/etNombre"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Nombres y Apellidos"
@@ -85,21 +86,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_height="84dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvEdad"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Edad"
                 android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/etEdad"
-                android:layout_width="181dp"
-                android:layout_height="wrap_content"
+                android:layout_width="184dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Edad"
@@ -109,25 +111,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="84dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvEdad2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="13dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Género"
                 android:textSize="20dp" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/etGenero"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:ems="10"
-                android:hint="Genero"
-                android:inputType="textPersonName" />
+                android:gravity="center" />
         </LinearLayout>
 
     </LinearLayout>
