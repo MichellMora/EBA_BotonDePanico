@@ -1,21 +1,24 @@
 package Boton_de_panico
 
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import com.proyecto.ebabotndepnico.R
+import com.proyecto.ebabotndepnico.contactos
 import kotlinx.android.synthetic.main.activity_btn_edit.*
 
 
 class btn_edit : AppCompatActivity() {
 
     private val bd = FirebaseFirestore.getInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,116 +70,94 @@ class btn_edit : AppCompatActivity() {
 
                     startActivity(Pa_Principal)
                 }
-
-
-
         }
 
     }
 
-    //Creación y Consulta de datos Acoso
+
+    //Crea los botones predeterminados para el usuario
+
+    private fun crearDatos(ID: String, IDbtn :String, nombrebtn: String, msjbtn: String,btn:Button,msj:TextView) {
+
+        btn.setText(nombrebtn)
+        msj.setText(msjbtn)
+
+        bd.collection("usuarios").document(ID)
+            .collection("botones").document(IDbtn).set(
+                hashMapOf("Nombre" to nombrebtn,
+                    "Mensaje" to msjbtn
+                )
+            )
+        mostrarDatos(ID,IDbtn,btn,msj) // se inicializa la función despues de hacer el registro automatico de botones predeterminados
+        }
+
+    //muestra los datos del botón y mensaje almacenados en la B.D.
+
+    private fun mostrarDatos(ID: String, IDbtn: String,btn: Button,msj: TextView) {
+
+        bd.collection("usuarios").document(ID.toString())
+            .collection("botones").document(IDbtn).get().addOnSuccessListener {
+
+                btn.setText(it.get("Nombre") as String?)
+                msj.setText(it.get("Mensaje") as String?)
+            }
+
+        enviarDatosBtn(ID, IDbtn, msj.getText().toString(),btn.getText().toString())
+
+        btn.setOnClickListener{
+            boton(btn,ID,IDbtn,msj) }
+
+
+    }
+
+    //Creación y Consulta de datos, revisa si ya esta creado el botón o no
 
     private fun DatosAcoso(ID: String){
 
-        bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("jRHaBP85jYEEPZjHhlEP").get().addOnSuccessListener {
-
-                if (it.exists()) {
-                    mostrarDatosbtn1(ID) }
-                else {
-                    crearDatosAcoso(ID)}
-            }
-
-    }
-    private fun crearDatosAcoso(ID: String) {
-        val nombrebtn = "Acoso"
-        val msjbtn = "Ayuda"
-
-        btn1.setText(nombrebtn)
-        msj1.setText(msjbtn)
+        val IDbtn = bd.collection("usuarios").document(ID).
+        collection("botones").document("jRHaBP85jYEEPZjHhlEP").id
 
         bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("jRHaBP85jYEEPZjHhlEP").set(
-                hashMapOf("Nombre" to nombrebtn,
-                    "Mensaje" to msjbtn
-                )
-            )
-        mostrarDatosbtn1(ID) // se inicializa la función despues de hacer el registro automatico de botones predeterminados
-        }
+                .collection("botones").document(IDbtn).get().addOnSuccessListener {
 
-    private fun mostrarDatosbtn1(ID: String) {
+                    if (it.exists()) {
+                        mostrarDatos(ID,IDbtn,btn1,msj1) }
+                    else {
+                        crearDatos(ID,IDbtn,"Acoso", "Me estan acosando, ayuda",btn1,msj1)}
 
-        val IDbtnAcoso = "jRHaBP85jYEEPZjHhlEP"
-
-        bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("jRHaBP85jYEEPZjHhlEP").get().addOnSuccessListener {
-
-                btn1.setText(it.get("Nombre") as String?)
-                msj1.setText(it.get("Mensaje") as String?)
-            }
-
-        enviarDatosBtn(ID, IDbtnAcoso, msj1.getText().toString(),btn1.getText().toString())
-
-        val IDbtn1 = bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("jRHaBP85jYEEPZjHhlEP").id
-
-        btn1.setOnClickListener{
-            boton(btn1,ID,IDbtn1,msj1) }
+                }
 
         elm_btn1.setOnClickListener{
-            elmbtn(btn1,ID,IDbtn1,msj1)
+            elmbtn(btn1,ID,IDbtn,msj1)
         }
-    }
 
+        btnAddCont1.setOnClickListener{
+            añadirContacto(ID,IDbtn)
+        }
+
+    }
     //Crear y consultar datos infarto
 
     private fun DatosInfarto(ID: String) {
+
+        val IDbtn =  bd.collection("usuarios").document(ID.toString())
+                .collection("botones").document("l2blui94fwoJv55pk3vq").id
+
         bd.collection("usuarios").document(ID.toString())
             .collection("botones").document("l2blui94fwoJv55pk3vq").get().addOnSuccessListener {
 
                 if (it.exists()) {
-                    mostrarDatosbtn2(ID) }
+                    mostrarDatos(ID,IDbtn,btn2,msj2) }
                 else {
-                    crearDatosInfarto(ID)}
+                    crearDatos(ID,IDbtn,"Infarto","Me esta dando un infarto, ayuda",btn2,msj2)}
             }
-    }
-
-    private fun crearDatosInfarto(ID: String) {
-
-        val nombrebtn = "Infarto"
-        val msjbtn = "Estoy teniendo un infarto, ayuda"
-
-        btn2.setText(nombrebtn)
-        msj2.setText(msjbtn)
-
-        bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("l2blui94fwoJv55pk3vq").set(
-                hashMapOf("Nombre" to nombrebtn,
-                    "Mensaje" to msjbtn
-
-                )
-            )
-
-        mostrarDatosbtn2(ID)
-    }
-
-    private fun mostrarDatosbtn2(ID: String) {
-
-        bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("l2blui94fwoJv55pk3vq").get().addOnSuccessListener {
-
-                btn2.setText(it.get("Nombre") as String?)
-                msj2.setText(it.get("Mensaje") as String?)
-            }
-
-        val IDbtn2 = bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("l2blui94fwoJv55pk3vq").id
-
-        btn2.setOnClickListener{
-            boton(btn2,ID,IDbtn2,msj2) }
 
         elm_btn2.setOnClickListener{
-            elmbtn(btn2,ID,IDbtn2,msj2)
+            elmbtn(btn2,ID,IDbtn,msj2)
+        }
+
+        btnAddCont2.setOnClickListener{
+            añadirContacto(ID,IDbtn)
         }
     }
 
@@ -184,53 +165,24 @@ class btn_edit : AppCompatActivity() {
 
     private fun DatosRobo(ID: String){
 
+        val IDbtn = bd.collection("usuarios").document(ID.toString())
+                .collection("botones").document("Jqji3ncjefaSHB5qUVnW").id
+
         bd.collection("usuarios").document(ID.toString())
             .collection("botones").document("Jqji3ncjefaSHB5qUVnW").get().addOnSuccessListener {
 
                 if (it.exists()) {
-                    mostrarDatosbtn3(ID)}
+                    mostrarDatos(ID,IDbtn,btn3,msj3)}
                 else {
-                    crearDatosRobo(ID)}
+                    crearDatos(ID,IDbtn,"Robo","Me acaban de robar, esta es la ubicación",btn3,msj3)}
             }
-    }
-
-    private fun crearDatosRobo(ID: String) {
-
-        val nombrebtn = "Robo"
-        val msjbtn = "Me robaron, ayuda"
-
-        btn3.setText(nombrebtn)
-        msj3.setText(msjbtn)
-
-        bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("Jqji3ncjefaSHB5qUVnW").set(
-                hashMapOf("Nombre" to nombrebtn,
-                    "Mensaje" to msjbtn
-
-                )
-            )
-
-        mostrarDatosbtn3(ID)
-
-    }
-
-    private fun mostrarDatosbtn3(ID: String) {
-
-        bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("Jqji3ncjefaSHB5qUVnW").get().addOnSuccessListener {
-
-                btn3.setText(it.get("Nombre") as String?)
-                msj3.setText(it.get("Mensaje") as String?)
-            }
-
-        val IDbtn3 = bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("Jqji3ncjefaSHB5qUVnW").id
-
-        btn3.setOnClickListener{
-            boton(btn3,ID,IDbtn3,msj3) }
 
         elm_btn3.setOnClickListener{
-            elmbtn(btn3,ID,IDbtn3,msj3)
+            elmbtn(btn3,ID,IDbtn,msj3)
+        }
+
+        btnAddCont3.setOnClickListener{
+            añadirContacto(ID,IDbtn)
         }
     }
 
@@ -238,58 +190,28 @@ class btn_edit : AppCompatActivity() {
 
     private fun DatosAlzheimer(ID: String){
 
+        val IDbtn = bd.collection("usuarios").document(ID.toString())
+                .collection("botones").document("RaaaBnnIUawPjsiKke0k").id
+
         bd.collection("usuarios").document(ID.toString())
             .collection("botones").document("RaaaBnnIUawPjsiKke0k").get().addOnSuccessListener {
 
                 if (it.exists()) {
-                    mostrarDatosbtn4(ID)}
+                    mostrarDatos(ID,IDbtn,btn4,msj4)}
                 else {
-                    crearDatosAlzheimer(ID)}
+                    crearDatos(ID,IDbtn,"Alzheimer", "Mi ubicación actual es esta",btn4,msj4)}
             }
-
-    }
-
-    private fun crearDatosAlzheimer(ID: String) {
-        val nombrebtn = "Alzheimer"
-        val msjbtn = "Estoy en esta ubicación"
-
-        btn4.setText(nombrebtn)
-        msj4.setText(msjbtn)
-
-        bd.collection("usuarios").document(ID)
-            .collection("botones").document("RaaaBnnIUawPjsiKke0k").set(
-                hashMapOf("Nombre" to nombrebtn,
-                    "Mensaje" to msjbtn
-                )
-            )
-
-        mostrarDatosbtn4(ID)
-    }
-
-
-    //Alzheimer
-    private fun mostrarDatosbtn4(ID: String) {
-
-        bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("RaaaBnnIUawPjsiKke0k").get().addOnSuccessListener {
-
-                btn4.setText(it.get("Nombre") as String?)
-                msj4.setText(it.get("Mensaje") as String?)
-            }
-
-        val IDbtn4 = bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document("RaaaBnnIUawPjsiKke0k").id
-
-        btn4.setOnClickListener{
-            boton(btn4,ID,IDbtn4,msj4) }
 
         elm_btn4.setOnClickListener{
-            elmbtn(btn4,ID,IDbtn4,msj4)
+            elmbtn(btn4,ID,IDbtn,msj4)
         }
 
+        btnAddCont4.setOnClickListener{
+            añadirContacto(ID,IDbtn)
+        }
     }
 
-    private fun elmbtn (btn:Button,ID:String, IDbtn1:String, msjbtn:TextView){
+    private fun elmbtn (btn:Button, ID:String, IDbtn:String, msjbtn:TextView){
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Eliminar Botón")
@@ -299,7 +221,7 @@ class btn_edit : AppCompatActivity() {
                         dialog, which ->
 
                     bd.collection("usuarios").document(ID)
-                        .collection("botones").document(IDbtn1)
+                        .collection("botones").document(IDbtn)
                         .set(
                             kotlin.collections.hashMapOf(
                                 "Nombre" to "",
@@ -321,6 +243,17 @@ class btn_edit : AppCompatActivity() {
             }
 
         }
+
+    private fun añadirContacto(ID:String, IDbtn:String){
+
+        val registro = Intent(this, contactos::class.java).apply {
+            putExtra("IDbtn", IDbtn)
+            putExtra("ID", ID)
+        }
+
+        startActivity(registro)
+    }
+
 
 
     private  fun  boton(btn:Button,ID:String, IDbtn1:String, msjbtn:TextView){

@@ -1,19 +1,21 @@
 package Boton_de_panico
 
+import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.firebase.firestore.FirebaseFirestore
 import com.proyecto.ebabotndepnico.R
-import kotlinx.android.synthetic.main.activity_btn_edit.*
 import kotlinx.android.synthetic.main.activity_pag__principal.*
-import android.Manifest
-import android.os.Build
-import android.telephony.SmsManager
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
+
 
 class Pag_Principal : AppCompatActivity() {
 
@@ -61,7 +63,7 @@ class Pag_Principal : AppCompatActivity() {
             btnAcoso.setOnClickListener {
                 var obj = SmsManager.getDefault()
                 obj.sendTextMessage("3163744244",
-                    null, MSJ.toString(),null,null)
+                    null, MSJ.toString() ,null,null)
             }
 
         }
@@ -90,6 +92,14 @@ class Pag_Principal : AppCompatActivity() {
         builder.setPositiveButton("Aceptar", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+
+    private fun ubicacion(){
+        //geo:<lat>,<lon>?z=<zoom>&q=<lat>,<lon>(<label>)
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:4.683963,-74.1499?z=16&q=4.683963,-74.1499(Michell)"))
+            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.Pag_Principal")
+            startActivity(intent)
+
     }
 
 

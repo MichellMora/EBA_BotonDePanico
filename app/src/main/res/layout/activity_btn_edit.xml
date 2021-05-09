@@ -37,21 +37,32 @@
                 android:layout_height="57dp"
                 android:orientation="horizontal">
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnAddCont1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:foregroundGravity="center"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_baseline_contact_phone_24" />
+
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/elm_btn1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:clickable="true"
+                    android:layout_gravity="center"
                     app:srcCompat="@drawable/ic_baseline_delete_24" />
 
 
                 <Space
-                    android:layout_width="60dp"
+                    android:layout_width="31dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -59,7 +70,8 @@
                     android:layout_width="129dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="1" />
+                    android:shadowColor="@color/black"
+                    android:layout_weight="1"/>
 
                 <Space
                     android:layout_width="20dp"
@@ -80,6 +92,16 @@
                 android:layout_height="57dp"
                 android:orientation="horizontal">
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnAddCont2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:foregroundGravity="center"
+                    app:srcCompat="@drawable/ic_baseline_contact_phone_24" />
+
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content" />
@@ -93,7 +115,7 @@
                     app:srcCompat="@drawable/ic_baseline_delete_24" />
 
                 <Space
-                    android:layout_width="60dp"
+                    android:layout_width="31dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -120,6 +142,16 @@
                 android:layout_height="57dp"
                 android:orientation="horizontal">
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnAddCont3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:foregroundGravity="center"
+                    app:srcCompat="@drawable/ic_baseline_contact_phone_24" />
+
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content" />
@@ -133,7 +165,7 @@
                     app:srcCompat="@drawable/ic_baseline_delete_24" />
 
                 <Space
-                    android:layout_width="60dp"
+                    android:layout_width="31dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -161,6 +193,16 @@
                 android:layout_height="57dp"
                 android:orientation="horizontal">
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnAddCont4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:foregroundGravity="center"
+                    app:srcCompat="@drawable/ic_baseline_contact_phone_24" />
+
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content" />
@@ -174,7 +216,7 @@
                     app:srcCompat="@drawable/ic_baseline_delete_24" />
 
                 <Space
-                    android:layout_width="60dp"
+                    android:layout_width="31dp"
                     android:layout_height="wrap_content" />
 
                 <Button

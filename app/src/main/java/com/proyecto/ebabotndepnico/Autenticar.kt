@@ -115,7 +115,7 @@ class Autenticar : AppCompatActivity() {
     }
 
     private fun panPrincipal(correo:String, ID: String) {
-        val registro = Intent(this, btn_edit()::class.java).apply {
+        val registro = Intent(this, btn_edit::class.java).apply {
             putExtra("correo", correo)
             putExtra("ID", ID)
         }

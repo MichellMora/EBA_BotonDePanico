@@ -1,8 +1,11 @@
 package com.proyecto.ebabotndepnico
 
+import Boton_de_panico.btn_edit
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
@@ -27,23 +30,25 @@ class datos_socio : AppCompatActivity() {
         registro(correo.toString(),ID.toString())
 
         etNombre.setText(ID)
-        
-        //AQUI QUEDE
+
         val lista = listOf("Femenino", "Maculino", "Otro")
         opciones = findViewById(R.id.etGenero)
         val adaptador = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista)
-        //AQUI QUEDE
+        opciones.adapter = adaptador
+
+
+
     }
 
     private fun registro(correo:String, ID: String) {
 
         btnAct.setOnClickListener {
-            if (etNombre.text.isNotEmpty() && etEdad.text.isNotEmpty() && etGenero.isActivated) {
+            if (etNombre.text.isNotEmpty() && etEdad.text.isNotEmpty() && etGenero.isClickable) {
                 //var ID = bd.collection("usuarios").document().id
                 bd.collection("usuarios").document(ID).set(
                     hashMapOf("nombre" to etNombre.text.toString(),
                         "edad" to etEdad.text.toString(),
-                        "genero" to etGenero.toString(),
+                        "genero" to  opciones.selectedItem.toString(),
                             "correo" to correo
                     )
 
@@ -89,7 +94,7 @@ class datos_socio : AppCompatActivity() {
 
 
     private fun sig(correo:String, ID:String) {
-        val registro = Intent(this, contactos()::class.java).apply {
+        val registro = Intent(this, btn_edit()::class.java).apply {
             putExtra("correo", correo)
             putExtra("ID",ID)
         }

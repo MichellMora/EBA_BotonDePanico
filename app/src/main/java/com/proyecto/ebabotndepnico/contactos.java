@@ -8,14 +8,17 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -28,16 +31,17 @@ import Boton_de_panico.btn_edit;
 
 public class contactos extends AppCompatActivity {
 
+
     EditText etNombreCon, etTel;
     FloatingActionButton btnañadir;
-    Button btnGuardarCon, btnSiguienteRS, btnEnlistar;
+    Button btnGuardarCon, btnSiguienteRS;
     Spinner lista;
     List<String> listaCont;
     ArrayAdapter AA;
 
-    FirebaseFirestore bdContactos;
+    FirebaseFirestore bd;
 
-    //List<Contacto>listaContactos = new ArrayList<>();
+    List<Contacto>listaContactos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +53,6 @@ public class contactos extends AppCompatActivity {
         etNombreCon = findViewById(R.id.etNombreCont);
         etTel = findViewById(R.id.etTel);
 
-        btnSiguienteRS = findViewById(R.id.btnSigRS);
         btnGuardarCon = findViewById(R.id.btnGuardarCont);
 
         btnañadir = findViewById(R.id.btnAddCont);
@@ -62,25 +65,17 @@ public class contactos extends AppCompatActivity {
 
 
         //bdContactos = FirebaseDatabase.getInstance().getReference();
-        bdContactos = FirebaseFirestore.getInstance();
+        bd = FirebaseFirestore.getInstance();
         añadirContacto();
 
         Bundle bundle = this.getIntent().getExtras();
         String correo = bundle.getString("correo");
         String ID = bundle.getString("ID");
-        guardarContacto(correo,ID);
+        String IDbtn = bundle.getString("IDbtn");
+        guardarContacto(ID,IDbtn);
 
         etNombreCon.setText(ID);
-
-        btnSiguienteRS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-               btn_edit(correo, ID);
-
-            }
-        });
-
+        etTel.setText(IDbtn);
 
     }
 
@@ -115,7 +110,6 @@ public class contactos extends AppCompatActivity {
                 String nombre = cursor.getString(iNombre);
                 String numero = cursor.getString(iTelefono);
 
-
                 numero = numero.
                         replace(" ","").
                         replace("(","").
@@ -126,14 +120,12 @@ public class contactos extends AppCompatActivity {
                 etNombreCon.setText(nombre);
                 etTel.setText(numero);
 
-
-
             }
         }
 
     }
 
-    public void guardarContacto(String correo, String ID){
+    public void guardarContacto(String ID, String IDbtn){
 
      btnGuardarCon.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -145,26 +137,24 @@ public class contactos extends AppCompatActivity {
 
             else
             {
-                Map<String, Object> map = new HashMap<>();
+                Map<String, String> map = new HashMap<>();
 
                 String nombre = etNombreCon.getText().toString();
 
                 map.put("Nombre", nombre );
                 map.put("Telefono", etTel.getText().toString());
 
-                bdContactos
-                        .collection("usuarios").document(ID)
-                        .collection("contactos").document().set(map);
-
-                Toast.makeText(contactos.this, "Contacto Añadido", Toast.LENGTH_LONG).show();
-
+                bd.collection("usuarios").document(ID)
+                        .collection("botones").document(IDbtn)
+                        .collection("contactos").document().set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Añadido", "si se añadio");
+                    }
+                });
 
 
                 enlistar();
-
-
-
-
 
             }
 
@@ -217,6 +207,6 @@ public class contactos extends AppCompatActivity {
         startActivity(i);
 
     }
-
-
 }
+
+

@@ -25,7 +25,7 @@ class Historieta : AppCompatActivity() {
 
     }
 
-    private fun TiempoHisto(){
+   private fun TiempoHisto(){
         object: CountDownTimer(15000, 1000){
             override fun onFinish() {
                sigPag()
