@@ -74,8 +74,6 @@ public class contactos extends AppCompatActivity {
         String IDbtn = bundle.getString("IDbtn");
         guardarContacto(ID,IDbtn);
 
-        etNombreCon.setText(ID);
-        etTel.setText(IDbtn);
 
     }
 
@@ -147,14 +145,16 @@ public class contactos extends AppCompatActivity {
                 bd.collection("usuarios").document(ID)
                         .collection("botones").document(IDbtn)
                         .collection("contactos").document().set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("Añadido", "si se añadio");
                     }
                 });
 
-
                 enlistar();
+
+                btn_edit(ID);
 
             }
 
@@ -199,10 +199,9 @@ public class contactos extends AppCompatActivity {
 
     }
 
-    private void btn_edit(String correo, String ID){
+    private void btn_edit(String ID){
 
         Intent i = new Intent(this, btn_edit.class);
-        i.putExtra("correo" , correo);
         i.putExtra("ID" , ID);
         startActivity(i);
 

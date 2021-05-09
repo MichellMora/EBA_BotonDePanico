@@ -83,7 +83,15 @@
                 android:backgroundTint="@color/verde"
                 android:text="Guardar" />
 
-        </LinearLayout>
+           <Button
+               android:id="@+id/btnVolver"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:backgroundTint="@color/verde"
+               android:text="Volver" />
+
+       </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
