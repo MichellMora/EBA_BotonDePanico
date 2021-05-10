@@ -2,13 +2,12 @@ package com.proyecto.ebabotndepnico
 
 import Boton_de_panico.btn_edit
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_datos_socio.*
 
@@ -54,8 +53,10 @@ class datos_socio : AppCompatActivity() {
 
                     )
                 msjAceptado()
-                btnContactos.setOnClickListener {
+
+                btnBotonEdit.setOnClickListener {
                     sig(correo,ID)
+                    Log.d("Correo", correo)
                 }
 
             }

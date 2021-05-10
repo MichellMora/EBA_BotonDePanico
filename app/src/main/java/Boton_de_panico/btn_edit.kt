@@ -19,14 +19,13 @@ class btn_edit : AppCompatActivity() {
 
     private val bd = FirebaseFirestore.getInstance()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_btn_edit)
 
-
         val bundle = intent.extras
         val ID = bundle?.getString("ID")
+
 
         //Crear o motrar datos de botones
         DatosAcoso(ID.toString())
@@ -34,17 +33,15 @@ class btn_edit : AppCompatActivity() {
         DatosRobo(ID.toString())
         DatosAlzheimer(ID.toString())
 
-        val correo = bundle?.getString("correo")
-        val IDmsj = bundle?.getString("IDmsj")
 
-        TraerDatos(correo.toString(),
-                ID.toString(),
-                IDmsj.toString())
     }
 
     private fun enviarDatosBtn(ID: String, IDbtn: String, msj:String, nomBoton:String){
 
         btnSigPr.setOnClickListener{
+
+            TraerDatosContactos(ID,
+                    IDbtn)
 
             if(btn1.text.isEmpty() && btn2.text.isEmpty() && btn3.text.isEmpty() && btn4.text.isEmpty() )
                 {
@@ -62,6 +59,7 @@ class btn_edit : AppCompatActivity() {
 
                     val Pa_Principal = Intent(this, Pag_Principal::class.java).apply {
                         putExtra("correo", correo)
+                        Log.d("Correo", correo.toString())
                         putExtra("ID", ID)
                         putExtra("IDbtn", IDbtn)
                         putExtra("msj", msj)
@@ -106,7 +104,6 @@ class btn_edit : AppCompatActivity() {
 
         btn.setOnClickListener{
             boton(btn,ID,IDbtn,msj) }
-
 
     }
 
@@ -308,35 +305,18 @@ class btn_edit : AppCompatActivity() {
 
     }
 
-    private fun TraerDatos(correo: String, ID: String, IDmsj: String) {
+    private fun TraerDatosContactos(ID: String, IDbtn: String) {
 
-        bd.collection("usuarios").document(ID).collection("contactos").
-        get().addOnSuccessListener{ resultado->
-            for (documents in resultado){
 
-                Log.d("Datos doc","$documents.id ${documents.data}") // Mostrar datos en logcats
+        bd.collection("usuarios").document(ID)
+                .collection("botones").document(IDbtn)
+                .collection("contactos")
+                .get().addOnSuccessListener{ resultado->
+                    for (documents in resultado){
 
-            }
-        }
+                        Log.d("Datos doc","$documents.id ${documents.data}") // Mostrar datos en logcats
 
-        bd.collection("usuarios").document(ID).collection("mensaje").
-        get().addOnSuccessListener{ resultado->
-            for (documents in resultado){
-
-                Log.d("Datos doc","$documents.id ${documents.data}") // Mostrar datos en logcats
-                //tvDatos.setText(documents.data.toString())
-                //List l = new List <>
-            }
-
-        }
-
-        bd.collection("usuarios").document(ID).collection("contactos").
-        get().addOnSuccessListener{ resultado->
-            for (documents in resultado){
-
-                Log.d("Datos doc","$documents.id ${documents.data}") // Mostrar datos en logcats
-
-            }
+                    }
 
         }
 

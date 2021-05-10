@@ -21,19 +21,218 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Space
+        <TextView
+            android:id="@+id/tvTit"
             android:layout_width="match_parent"
-            android:layout_height="19dp" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="199dp"
-            app:srcCompat="@drawable/logo" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Registro de Contactos"
+            android:textSize="30dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="18dp" />
+            android:layout_height="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="208dp"
+                android:layout_height="92dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/contNom1"
+                    android:layout_width="209dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/cont1"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnCont1"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/ic_baseline_add_24"
+                app:fabCustomSize="34dp"
+                app:maxImageSize="34dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnListo1"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/ic_baseline_check_24"
+                app:fabCustomSize="34dp"
+                app:maxImageSize="34dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="208dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/contNom2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/cont2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnCont2"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/ic_baseline_add_24"
+                app:fabCustomSize="34dp"
+                app:maxImageSize="34dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnListo2"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/ic_baseline_check_24"
+                app:fabCustomSize="34dp"
+                app:maxImageSize="34dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="210dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/contNom3"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/cont3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnCont3"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/ic_baseline_add_24"
+                app:fabCustomSize="34dp"
+                app:maxImageSize="34dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnListo3"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/ic_baseline_check_24"
+                app:fabCustomSize="34dp"
+                app:maxImageSize="34dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="210dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/contNom4"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/cont4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnCont4"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/ic_baseline_add_24"
+                app:fabCustomSize="34dp"
+                app:maxImageSize="34dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnListo4"
+                android:layout_width="38dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/ic_baseline_check_24"
+                app:fabCustomSize="34dp"
+                app:maxImageSize="34dp" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="31dp" />
 
         <EditText
             android:id="@+id/etNombreCont"
@@ -53,24 +252,13 @@
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 
-        <Spinner
+        <!-- <Spinner
             android:id="@+id/listaCont"
             android:layout_width="match_parent"
-            android:layout_height="119dp" />
+            android:layout_height="119dp" />!-->
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnAddCont"
-            android:layout_width="354dp"
-            android:layout_height="57dp"
-            android:layout_gravity="center"
-            android:clickable="true"
-            app:srcCompat="@drawable/ic_baseline_add_24" />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="57dp" />
-
-       <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="59dp"
             android:orientation="horizontal">
@@ -83,15 +271,15 @@
                 android:backgroundTint="@color/verde"
                 android:text="Guardar" />
 
-           <Button
-               android:id="@+id/btnVolver"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:backgroundTint="@color/verde"
-               android:text="Volver" />
+            <Button
+                android:id="@+id/btnVolver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/verde"
+                android:text="Volver" />
 
-       </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
