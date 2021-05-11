@@ -3,29 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/historieta"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
     android:orientation="vertical"
     tools:context="Inicio_app.Historieta">
 
 
     <LinearLayout
-        android:id="@+id/linearLayout5"
+        android:id="@+id/lyhistorieta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="684dp"
+        android:gravity="fill_vertical"
         android:orientation="vertical"
+        android:background="@drawable/historieta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/btnOmitir"
-            android:layout_width="155dp"
-            android:layout_height="44dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/btn_historieta" />
 
     </LinearLayout>
 

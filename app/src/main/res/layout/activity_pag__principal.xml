@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="Boton_de_panico.Pag_Principal">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="30dp"
@@ -28,7 +28,7 @@
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnUser"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 app:srcCompat="@drawable/ic_baseline_account_circle_24" />
@@ -41,7 +41,7 @@
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnConf"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 app:srcCompat="@drawable/ic_baseline_settings_24" />
@@ -57,42 +57,48 @@
             android:layout_width="match_parent"
             android:layout_height="55dp" />
 
-        <TextView
-            android:id="@+id/tvDatos"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <TextView
-            android:id="@+id/tvDatos2"
-            android:layout_width="match_parent"
-            android:layout_height="60dp" />
-
-        <TextView
-            android:id="@+id/tvDatos3"
-            android:layout_width="match_parent"
-            android:layout_height="54dp" />
-
-        <TextView
-            android:id="@+id/tvDatos4"
-            android:layout_width="match_parent"
-            android:layout_height="54dp" />
-
-        <TextView
-            android:id="@+id/tvDatos5"
-            android:layout_width="match_parent"
-            android:layout_height="54dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="86dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnAcoso"
+                android:id="@+id/btnMSJ1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="ACOSO" />
+
+            <Button
+                android:id="@+id/btnMSJ2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Infarto" />
+
+
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnMSJ3"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="ROBO" />
+
+            <Button
+                android:id="@+id/btnMSJ4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="ALZHEIMER" />
+        </LinearLayout>
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

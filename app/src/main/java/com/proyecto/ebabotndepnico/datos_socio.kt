@@ -55,7 +55,7 @@ class datos_socio : AppCompatActivity() {
                 msjAceptado()
 
                 btnBotonEdit.setOnClickListener {
-                    sig(correo,ID)
+                    configuracion(correo,ID)
                     Log.d("Correo", correo)
                 }
 
@@ -94,7 +94,7 @@ class datos_socio : AppCompatActivity() {
     }
 
 
-    private fun sig(correo:String, ID:String) {
+    private fun configuracion(correo:String, ID:String) {
         val registro = Intent(this, btn_edit()::class.java).apply {
             putExtra("correo", correo)
             putExtra("ID",ID)

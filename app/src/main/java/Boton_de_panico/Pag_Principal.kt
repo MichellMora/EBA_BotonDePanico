@@ -1,9 +1,7 @@
 package Boton_de_panico
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.telephony.SmsManager
@@ -14,9 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.firebase.firestore.FirebaseFirestore
 import com.proyecto.ebabotndepnico.R
-import kotlinx.android.synthetic.main.activity_contactos.*
 import kotlinx.android.synthetic.main.activity_pag__principal.*
-import java.net.IDN
 
 
 class Pag_Principal : AppCompatActivity() {
@@ -46,94 +42,95 @@ class Pag_Principal : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
-    private fun enviarSMS (/*telefono1 : String, telefono2:String, telefono3:String,telefono4:String*/) {
+    private fun enviarSMS () {
 
         val bundle = intent.extras
         val ID = bundle?.getString("ID")
         val correo = bundle?.getString("correo")
-        val IDbtn = bd.collection("usuarios").document(ID.toString()).collection("botones").document("jRHaBP85jYEEPZjHhlEP").id
+
+        val IDbtn1 = bd.collection("usuarios")
+                .document(ID.toString()).collection("botones")
+                .document("jRHaBP85jYEEPZjHhlEP").id
+
+        val IDbtn2 = bd.collection("usuarios")
+                .document(ID.toString()).collection("botones")
+                .document("l2blui94fwoJv55pk3vq").id
+
+        val IDbtn3 = bd.collection("usuarios")
+                .document(ID.toString()).collection("botones")
+                .document("Jqji3ncjefaSHB5qUVnW").id
+
+        val IDbtn4 = bd.collection("usuarios")
+                .document(ID.toString()).collection("botones")
+                .document("RaaaBnnIUawPjsiKke0k").id
+
+        //tvDatos.setText(ID)
+        //tvDatos2.setText(correo)
+        //tvDatos3.setText(IDbtn1)
 
         val IDcont1 = bd.collection("usuarios").document(ID.toString())
-                .collection("botones").document(IDbtn)
+                .collection("botones").document(IDbtn1)
                 .collection("contactos").document("gnAxPhqOWTeh5TxAx9z3").id
 
         val IDcont2 = bd.collection("usuarios").document(ID.toString())
-                .collection("botones").document(IDbtn)
+                .collection("botones").document(IDbtn1)
                 .collection("contactos").document("IqwbHuRrXp4dHkJEme3j").id
 
-        bd.collection("usuarios").document(ID.toString()).collection("botones").document(IDbtn).get().addOnSuccessListener {
+        val IDcont3 = bd.collection("usuarios").document(ID.toString())
+                .collection("botones").document(IDbtn1)
+                .collection("contactos").document("f9CybwrIogVICsrYNVAO").id
 
-            tvDatos4.setText(it.get("Nombre") as String?)
-            tvDatos5.setText(it.get("Mensaje") as String?)
+        val IDcont4 = bd.collection("usuarios").document(ID.toString())
+                .collection("botones").document(IDbtn1)
+                .collection("contactos").document("NYLVhTBV7mTYuUwkcsRE").id
 
-            val MSJ1 = it.get("Mensaje")
-
+        btnMSJ1.setOnClickListener {
             bd.collection("usuarios").document(ID.toString())
-                    .collection("botones").document(IDbtn)
-                    .collection("contactos").document(IDcont1).get().addOnSuccessListener { document ->
+                    .collection("botones").document(IDbtn1)
+                    .get().addOnSuccessListener {
 
-                        if (document.exists()) {
-
-                            var contacto1 = document.getString("Telefono")
-
-                            /*bd.collection("usuarios").document(ID.toString())
-                                    .collection("botones").document(IDbtn)
-                                    .collection("contactos").document(IDcont2).get().addOnSuccessListener { document ->
-
-                                        if (document.exists()) {
-
-                                            var contacto2 = document.getString("Telefono")*/
-
-                            btnAcoso.setOnClickListener {
-
-                                var cont1 = SmsManager.getDefault()
-                                cont1.sendTextMessage(contacto1.toString(),
-                                        null, MSJ1.toString(), null, null)
-
-                                /*var cont2 = SmsManager.getDefault()
-                                cont2.sendTextMessage(contacto2.toString(),
-                                        null, MSJ1.toString(), null, null)*/
-                            //}
+                        val MSJ1 = it.get("Mensaje")
+                        msjBoton(ID.toString(),IDbtn1,IDcont1,IDcont2,IDcont3,IDcont4, MSJ1.toString())}
 
 
-                       // }
-                    }
 
-                            /* btnAcoso.setOnClickListener {
+        }
 
-                var cont1 = SmsManager.getDefault()
-                cont1.sendTextMessage(telefono1,
-                    null, MSJ1.toString() ,null,null)
+        btnMSJ2.setOnClickListener {
+            bd.collection("usuarios").document(ID.toString())
+                    .collection("botones").document(IDbtn2)
+                    .get().addOnSuccessListener {
 
-                var cont2 = SmsManager.getDefault()
-                cont2.sendTextMessage(telefono2,
-                        null, MSJ1.toString() ,null,null)
-
-               /* var cont3 = SmsManager.getDefault()
-                cont3.sendTextMessage(telefono3,
-                        null, MSJ1.toString() ,null,null)
-
-                var cont4 = SmsManager.getDefault()
-                cont4.sendTextMessage(telefono4,
-                        null, MSJ1.toString() ,null,null)*/
-            }*/
-
-                        }
-
-                        bd.collection("usuarios").document(ID.toString()).collection("contactos").get().addOnSuccessListener { resultado ->
-                            for (documents in resultado) {
-
-                                Log.d("Datos doc", "$documents.id ${documents.data}") // Mostrar datos en logcats
-
-                            }
-                        }
-
-                        tvDatos.setText(ID)
-                        tvDatos2.setText(correo)
-                        tvDatos3.setText(IDbtn)
+                        val MSJ3 = it.get("Mensaje")
+                        msjBoton(ID.toString(), IDbtn2, IDcont1, IDcont2, IDcont3, IDcont4, MSJ3.toString())
 
                     }
         }
+
+        btnMSJ3.setOnClickListener{
+            bd.collection("usuarios").document(ID.toString())
+                    .collection("botones").document(IDbtn3)
+                    .get().addOnSuccessListener {
+
+                        val MSJ3 = it.get("Mensaje")
+                        msjBoton(ID.toString(),IDbtn3,IDcont1,IDcont2,IDcont3,IDcont4,MSJ3.toString())
+
+                    }
+
+        }
+
+        btnMSJ4.setOnClickListener{
+            bd.collection("usuarios").document(ID.toString())
+                    .collection("botones").document(IDbtn4)
+                    .get().addOnSuccessListener {
+
+                        val MSJ4 = it.get("Mensaje")
+                        msjBoton(ID.toString(),IDbtn4,IDcont1,IDcont2,IDcont3,IDcont4,MSJ4.toString())
+
+                    }
+
+        }
+
     }
 
     private fun msjAprobado(){
@@ -145,62 +142,68 @@ class Pag_Principal : AppCompatActivity() {
         dialog.show()
     }
 
-   /* @RequiresApi(Build.VERSION_CODES.R)
-    private fun obtenerContactos(){
-
-        val bundle = intent.extras
-        val ID = bundle?.getString("ID")
-        val correo = bundle?.getString("correo")
-        val IDbtn =  bd.collection("usuarios").document(ID.toString()).collection("botones").document("jRHaBP85jYEEPZjHhlEP").id
-
-
-
-       val IDcont1 = bd.collection("usuarios").document(ID.toString())
-                .collection("botones").document(IDbtn)
-                .collection("contactos").document("gnAxPhqOWTeh5TxAx9z3").id
-
-        val IDcont2 = bd.collection("usuarios").document(ID.toString())
-                .collection("botones").document(IDbtn)
-                .collection("contactos").document("IqwbHuRrXp4dHkJEme3j").id
-
-        val IDcont3 = bd.collection("usuarios").document(ID.toString())
-                .collection("botones").document(IDbtn)
-                .collection("contactos").document("f9CybwrIogVICsrYNVAO").id
-
-        val IDcont4 = bd.collection("usuarios").document(ID.toString())
-                .collection("botones").document(IDbtn)
-                .collection("contactos").document("NYLVhTBV7mTYuUwkcsRE").id
+    private fun msjBoton(ID : String, IDbtn: String, IDcont1: String, IDcont2 :String, IDcont3:String, IDcont4:String, MSJ: String){
 
         bd.collection("usuarios").document(ID.toString())
-            .collection("botones").document(IDbtn)
-            .collection("contactos").document(IDcont1).get().addOnSuccessListener {document ->
+                .collection("botones").document(IDbtn)
+                .get().addOnSuccessListener {
 
-                    if (document.exists()){
+                    bd.collection("usuarios").document(ID.toString())
+                            .collection("botones").document(IDbtn)
+                            .collection("contactos").document(IDcont1).get().addOnSuccessListener { document ->
 
-                       var contacto1 = document.getString("Telefono")
+                                if (document.exists()) {
 
-                        /*bd.collection("usuarios").document(ID.toString())
-                                .collection("botones").document(IDbtn)
-                                .collection("contactos").document(IDcont2).get().addOnSuccessListener {document ->
+                                        msj(MSJ.toString(), ID.toString(),IDbtn,IDcont1)
+                                        msj(MSJ.toString(), ID.toString(),IDbtn,IDcont2)
+                                        msj(MSJ.toString(), ID.toString(),IDbtn,IDcont3)
+                                        msj(MSJ.toString(), ID.toString(),IDbtn,IDcont4)
 
-                                    if (document.exists()){
 
-                                        var contacto2 = document.getString("Telefono")*/
-                                        enviarSMS(contacto1.toString(),"000")
-                                    //}
-                                //}
-                    }
+                                } else {
+
+
+                                        msj(MSJ.toString(), ID.toString(),IDbtn,IDcont2)
+                                        msj(MSJ.toString(), ID.toString(),IDbtn,IDcont3)
+                                        msj(MSJ.toString(), ID.toString(),IDbtn,IDcont4)
+
+
+
+                                }
+
+                            }
                 }
 
     }
 
-    private fun ubicacion(){
-        //geo:<lat>,<lon>?z=<zoom>&q=<lat>,<lon>(<label>)
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:4.683963,-74.1499?z=16&q=4.683963,-74.1499(Michell)"))
-            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.Pag_Principal")
-            startActivity(intent)
 
-    }*/
+    private fun msj(MSJ:String, ID:String,IDbtn:String,IDcont:String){
+
+        bd.collection("usuarios").document(ID.toString())
+                .collection("botones").document(IDbtn)
+                .collection("contactos").document(IDcont).get().addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        if (MSJ.isEmpty()){
+                            Log.d("MSj", "El mensaje esta vacio")
+                        }else{
+                            var contacto = document.getString("Telefono")
+                            var cont = SmsManager.getDefault()
+                            cont.sendTextMessage(contacto.toString(),
+                                    null, MSJ, null, null)
+                        }
+
+                    }else {
+
+                        Log.d("Contacto","Contacto no existe")
+
+                    }
+
+                }
+
+    }
+
+
+
 
 
 }

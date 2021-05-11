@@ -38,7 +38,7 @@ class Autenticar : AppCompatActivity() {
                         if (it.isSuccessful) {
                             //val ID = FirebaseAuth.getInstance().currentUser
                             val ID = FirebaseAuth.getInstance().uid
-                            enviarCorreo(it.result?.user?.email?:"", ID.toString())
+                            registro_datos(it.result?.user?.email?:"", ID.toString())
                         } else {
 
                             registroAlertaError()
@@ -59,7 +59,7 @@ class Autenticar : AppCompatActivity() {
 
                         if (it.isSuccessful) {
                             val ID = FirebaseAuth.getInstance().uid
-                            panPrincipal(it.result?.user?.email?:"",ID.toString())
+                            pag_Principal(it.result?.user?.email?:"",ID.toString())
 
                         } else {
 
@@ -94,18 +94,7 @@ class Autenticar : AppCompatActivity() {
         dialog.show()
     }
 
-    /*private fun mostrarDatos(correo: String, provider: ProviderType) {
-
-        val mostrarDatos = Intent(this, Mostrar_Datos::class.java).apply {
-            putExtra("correo", correo)
-            putExtra("provider", provider.name)
-        }
-
-        startActivity(mostrarDatos)
-    }*/
-
-
-    private fun enviarCorreo(correo:String, ID: String) {
+    private fun registro_datos(correo:String, ID: String) {
         val registro = Intent(this, datos_socio()::class.java).apply {
             putExtra("correo", correo)
             putExtra("ID", ID)
@@ -114,7 +103,7 @@ class Autenticar : AppCompatActivity() {
         startActivity(registro)
     }
 
-    private fun panPrincipal(correo:String, ID: String) {
+    private fun pag_Principal(correo:String, ID: String) {
         val registro = Intent(this, btn_edit::class.java).apply {
             putExtra("correo", correo)
             putExtra("ID", ID)
