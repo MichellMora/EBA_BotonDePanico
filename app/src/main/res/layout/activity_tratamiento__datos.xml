@@ -9,39 +9,38 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="167dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="33dp"
+        android:layout_height="196dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="38dp"
         android:gravity="center"
         android:text="Autorizo, teniendo en cuenta la ley 1581 de 2012 y demás normas afines, de manera libre y voluntaria a la aplicación EBA para realizar tratamiento de datos personales brindados dentro de la App,entendiendo que son utilizados para su normal funcionamiento y que estos no seran tratados fuera de la misma,además, garantizo la veracidad de los datos proporcionados "
         app:layout_constraintBottom_toTopOf="@+id/btnAutorizar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.727" />
 
     <Button
         android:id="@+id/btncont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="164dp"
+        android:layout_marginBottom="88dp"
         android:text="Continuar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAutorizar"
         tools:visibility="invisible" />
 
     <CheckBox
         android:id="@+id/btnAutorizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginBottom="69dp"
+        android:layout_marginBottom="72dp"
+        android:gravity="center"
         android:text="Autorizo tratamiento de datos personales"
         app:layout_constraintBottom_toTopOf="@+id/btncont"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

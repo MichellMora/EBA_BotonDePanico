@@ -1,14 +1,11 @@
 package Boton_de_panico
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import com.proyecto.ebabotndepnico.R
 import com.proyecto.ebabotndepnico.contactos
@@ -43,7 +40,7 @@ class btn_edit : AppCompatActivity() {
             TraerDatosContactos(ID,
                     IDbtn)
 
-            if(btn1.text.isEmpty() && btn2.text.isEmpty() && btn3.text.isEmpty() && btn4.text.isEmpty() )
+            if(btn1.text.isEmpty() && btn3.text.isEmpty() && btn2.text.isEmpty() && btn4.text.isEmpty() )
                 {
                     val builder = AlertDialog.Builder(this)
                     builder.setTitle("Error")

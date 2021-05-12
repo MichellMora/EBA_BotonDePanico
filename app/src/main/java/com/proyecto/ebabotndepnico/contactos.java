@@ -72,16 +72,19 @@ public class contactos extends AppCompatActivity {
         etTel = findViewById(R.id.etTel);
 
         btnCont1 = findViewById(R.id.btnCont1);
-        btnCont2 = findViewById(R.id.btnCont2);
-        btnCont3 = findViewById(R.id.btnCont3);
-        btnCont4 = findViewById(R.id.btnCont4);
+
+        btnCont1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                añadirContacto();
+            }
+        });
 
         btnListo1 = findViewById(R.id.btnListo1);
         btnListo2 = findViewById(R.id.btnListo2);
         btnListo3 = findViewById(R.id.btnListo3);
         btnListo4 = findViewById(R.id.btnListo4);
 
-        btnGuardarCon = findViewById(R.id.btnGuardarCont);
         btnVolver = findViewById(R.id.btnVolver);
 
 
@@ -112,12 +115,12 @@ public class contactos extends AppCompatActivity {
 
         mostrarContacto1(ID,IDbtn,IDcontacto,contNom1,cont1);
 
-        btnCont1.setOnClickListener(new View.OnClickListener() {
+       /* btnCont1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 añadirContacto();
             }
-        });
+        });*/
 
         btnListo1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,12 +144,12 @@ public class contactos extends AppCompatActivity {
 
         mostrarContacto1(ID,IDbtn,IDcontacto,contNom2,cont2);
 
-        btnCont2.setOnClickListener(new View.OnClickListener() {
+        /*btnCont2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 añadirContacto();
             }
-        });
+        });*/
 
         btnListo2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,12 +173,12 @@ public class contactos extends AppCompatActivity {
 
         mostrarContacto1(ID,IDbtn,IDcontacto,contNom3,cont3);
 
-        btnCont3.setOnClickListener(new View.OnClickListener() {
+        /*btnCont3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 añadirContacto();
             }
-        });
+        });*/
 
         btnListo3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,12 +202,12 @@ public class contactos extends AppCompatActivity {
 
         mostrarContacto1(ID,IDbtn,IDcontacto,contNom4,cont4);
 
-        btnCont4.setOnClickListener(new View.OnClickListener() {
+        /*btnCont4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 añadirContacto();
             }
-        });
+        });*/
 
         btnListo4.setOnClickListener(new View.OnClickListener() {
             @Override

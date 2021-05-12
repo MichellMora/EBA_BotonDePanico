@@ -9,6 +9,8 @@ import android.os.Build
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.util.Log
+import android.widget.Button
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +20,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.firebase.firestore.FirebaseFirestore
 import com.proyecto.ebabotndepnico.R
 import com.proyecto.ebabotndepnico.contactos
+import kotlinx.android.synthetic.main.activity_btn_edit.*
 import kotlinx.android.synthetic.main.activity_pag__principal.*
 
 class Pag_Principal : AppCompatActivity() {
@@ -36,7 +39,42 @@ class Pag_Principal : AppCompatActivity() {
         solicitarPermisos()
         enviarSMS()
         //ubicacion()
+        val bundle = intent.extras
+        val ID = bundle?.getString("ID")
+        val correo = bundle?.getString("correo")
+        val IDbtn1 = bd.collection("usuarios")
+                .document(ID.toString()).collection("botones")
+                .document("jRHaBP85jYEEPZjHhlEP").id
+
+        val IDbtn2 = bd.collection("usuarios")
+                .document(ID.toString()).collection("botones")
+                .document("l2blui94fwoJv55pk3vq").id
+
+        val IDbtn3 = bd.collection("usuarios")
+                .document(ID.toString()).collection("botones")
+                .document("Jqji3ncjefaSHB5qUVnW").id
+
+        val IDbtn4 = bd.collection("usuarios")
+                .document(ID.toString()).collection("botones")
+                .document("RaaaBnnIUawPjsiKke0k").id
+
+        mostrarDatos(ID.toString(),IDbtn1,btnMSJ1)
+        mostrarDatos(ID.toString(),IDbtn2,btnMSJ2)
+        mostrarDatos(ID.toString(),IDbtn3,btnMSJ3)
+        mostrarDatos(ID.toString(),IDbtn4,btnMSJ4)
+
+
+
     }
+
+    private fun mostrarDatos(ID: String, IDbtn: String, btn: Button) {
+
+        bd.collection("usuarios").document(ID.toString())
+                .collection("botones").document(IDbtn).get().addOnSuccessListener {
+
+                    btn.setText(it.get("Nombre") as String?)
+                }}
+
 
     private fun solicitarPermisos(){
         val SMS = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)

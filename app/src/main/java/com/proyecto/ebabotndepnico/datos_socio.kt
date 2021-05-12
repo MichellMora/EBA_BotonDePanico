@@ -28,7 +28,6 @@ class datos_socio : AppCompatActivity() {
         val ID = bundle?.getString("ID")
         registro(correo.toString(),ID.toString())
 
-        etNombre.setText(ID)
 
         val lista = listOf("Femenino", "Maculino", "Otro")
         opciones = findViewById(R.id.etGenero)

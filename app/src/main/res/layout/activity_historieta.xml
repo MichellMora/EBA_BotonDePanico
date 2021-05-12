@@ -8,21 +8,14 @@
     android:orientation="vertical"
     tools:context="Inicio_app.Historieta">
 
-
-    <LinearLayout
-        android:id="@+id/lyhistorieta"
+    <ImageView
+        android:id="@+id/ivHistorieta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="fill_vertical"
-        android:orientation="vertical"
-        android:background="@drawable/historieta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/historieta_br" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

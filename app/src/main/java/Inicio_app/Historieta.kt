@@ -19,7 +19,7 @@ class Historieta : AppCompatActivity() {
 
         TiempoHisto()
 
-        lyhistorieta.setOnClickListener {
+        ivHistorieta.setOnClickListener {
             sigPag()
         }
 
