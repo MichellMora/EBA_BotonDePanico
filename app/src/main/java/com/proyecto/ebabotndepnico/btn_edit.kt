@@ -1,5 +1,6 @@
-package Boton_de_panico
+package com.proyecto.ebabotndepnico
 
+import Boton_de_panico.Pag_Principal
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +8,6 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
-import com.proyecto.ebabotndepnico.R
-import com.proyecto.ebabotndepnico.contactos
 import kotlinx.android.synthetic.main.activity_btn_edit.*
 
 
@@ -24,47 +23,79 @@ class btn_edit : AppCompatActivity() {
         val ID = bundle?.getString("ID")
 
 
-        //Crear o motrar datos de botones
+        //Crear o mostrar datos de botones
         DatosAcoso(ID.toString())
         DatosInfarto(ID.toString())
         DatosRobo(ID.toString())
         DatosAlzheimer(ID.toString())
 
+    }
+
+    private fun red_social(ID:String,IDbtn:String, msj:String, nomBoton:String){
+        val r_social = Intent(this, ConexionFacebook::class.java).apply {
+            putExtra("ID", ID)
+            putExtra("IDbtn", IDbtn)
+            putExtra("msj", msj)
+            putExtra("nomBoton", nomBoton)
+        }
+        startActivity(r_social)
+    }
+
+    private fun P_Principal(ID:String,IDbtn:String, msj:String, nomBoton:String){
+
+        TraerDatosContactos(ID,
+                IDbtn)
+
+        if(btn1.text.isEmpty() && btn3.text.isEmpty() && btn2.text.isEmpty() && btn4.text.isEmpty() )
+        {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Error")
+            builder.setMessage("Debes tener minimo un botón de pánico para continuar")
+            builder.setPositiveButton("Aceptar", null)
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
+        else
+        {
+            val bundle = intent.extras
+            val correo = bundle?.getString("correo")
+
+            val Pa_Principal = Intent(this, Pag_Principal::class.java).apply {
+                putExtra("correo", correo)
+                Log.d("Correo", correo.toString())
+                putExtra("ID", ID)
+                putExtra("IDbtn", IDbtn)
+                putExtra("msj", msj)
+                putExtra("nomBoton", nomBoton)
+            }
+
+            startActivity(Pa_Principal)
+        }
 
     }
+
 
     private fun enviarDatosBtn(ID: String, IDbtn: String, msj:String, nomBoton:String){
 
         btnSigPr.setOnClickListener{
 
-            TraerDatosContactos(ID,
-                    IDbtn)
-
-            if(btn1.text.isEmpty() && btn3.text.isEmpty() && btn2.text.isEmpty() && btn4.text.isEmpty() )
-                {
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("Error")
-                    builder.setMessage("Debes tener minimo un botón de pánico para continuar")
-                    builder.setPositiveButton("Aceptar", null)
-                    val dialog: AlertDialog = builder.create()
-                    dialog.show()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Registro redes sociales")
+            builder.setMessage("¿Desea Registrar sus redes sociales?")
+            with(builder){
+                setPositiveButton("Sí"){
+                    dialog, which ->
+                    red_social(ID, IDbtn, msj, nomBoton)
                 }
-            else
-                {
-                    val bundle = intent.extras
-                    val correo = bundle?.getString("correo")
 
-                    val Pa_Principal = Intent(this, Pag_Principal::class.java).apply {
-                        putExtra("correo", correo)
-                        Log.d("Correo", correo.toString())
-                        putExtra("ID", ID)
-                        putExtra("IDbtn", IDbtn)
-                        putExtra("msj", msj)
-                        putExtra("nomBoton", nomBoton)
-                    }
-
-                    startActivity(Pa_Principal)
+                setNegativeButton("No"){
+                    dialog, which->
+                    P_Principal(ID,IDbtn,msj,nomBoton)
                 }
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+            }
+
         }
 
     }
@@ -126,6 +157,7 @@ class btn_edit : AppCompatActivity() {
         }
 
         btnAddCont1.setOnClickListener{
+
             añadirContacto(ID,IDbtn)
         }
 

@@ -1,6 +1,6 @@
 package com.proyecto.ebabotndepnico
 
-import Boton_de_panico.btn_edit
+import Boton_de_panico.Pag_Principal
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -104,7 +104,7 @@ class Autenticar : AppCompatActivity() {
     }
 
     private fun pag_Principal(correo:String, ID: String) {
-        val registro = Intent(this, btn_edit::class.java).apply {
+        val registro = Intent(this, Pag_Principal::class.java).apply {
             putExtra("correo", correo)
             putExtra("ID", ID)
         }

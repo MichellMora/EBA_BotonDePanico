@@ -3,14 +3,11 @@ package Boton_de_panico
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.LocationManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.util.Log
 import android.widget.Button
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -19,8 +16,8 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.firestore.FirebaseFirestore
 import com.proyecto.ebabotndepnico.R
-import com.proyecto.ebabotndepnico.contactos
-import kotlinx.android.synthetic.main.activity_btn_edit.*
+import com.proyecto.ebabotndepnico.btn_edit
+import com.proyecto.ebabotndepnico.datos_socio
 import kotlinx.android.synthetic.main.activity_pag__principal.*
 
 class Pag_Principal : AppCompatActivity() {
@@ -63,6 +60,20 @@ class Pag_Principal : AppCompatActivity() {
         mostrarDatos(ID.toString(),IDbtn3,btnMSJ3)
         mostrarDatos(ID.toString(),IDbtn4,btnMSJ4)
 
+        config.setOnClickListener {
+            val conf = Intent(this, btn_edit::class.java).apply{
+                putExtra("ID", ID)
+            }
+            startActivity(conf)
+        }
+
+        perfil.setOnClickListener {
+            val perfil = Intent(this, datos_socio::class.java).apply{
+                putExtra("correo", correo)
+                putExtra("ID", ID)
+            }
+            startActivity(perfil)
+        }
 
 
     }

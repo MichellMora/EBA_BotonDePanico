@@ -1,4 +1,4 @@
-package Boton_de_panico;
+package com.proyecto.ebabotndepnico;
 
 import android.view.LayoutInflater;
 import android.view.View;

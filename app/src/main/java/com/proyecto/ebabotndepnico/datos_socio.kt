@@ -1,6 +1,5 @@
 package com.proyecto.ebabotndepnico
 
-import Boton_de_panico.btn_edit
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log

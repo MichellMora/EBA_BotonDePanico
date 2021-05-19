@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EBA (Botón de Pánico)</string>
+    <string name="facebook_app_id">306554964523433</string>
+    <string name="fb_login_protocol_scheme">fb306554964523433</string>
 </resources>

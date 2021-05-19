@@ -17,7 +17,7 @@
         android:layout_marginEnd="58dp"
         android:layout_marginBottom="21dp"
         android:gravity="center"
-        android:text="Registro de Datos Personales"
+        android:text="Datos Personales"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/verde"
-        android:text="Registrar"
+        android:text="Guardar"
         app:layout_constraintBottom_toTopOf="@+id/btnBotonEdit"
         app:layout_constraintEnd_toEndOf="@+id/btnBotonEdit"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />

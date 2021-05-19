@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Boton_de_panico.btn_edit">
+    tools:context=".btn_edit">
 
     <TextView
         android:id="@+id/textView3"
