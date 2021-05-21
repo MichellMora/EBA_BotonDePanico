@@ -7,37 +7,59 @@
     tools:context=".ConexionFacebook">
 
 
+    <Button
+        android:id="@+id/Volver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Volver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comp" />
+
+    <TextView
+        android:id="@+id/tvperfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="53dp"
+        android:hint="Usuario"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/login_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="448dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="288dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.facebook.login.widget.ProfilePictureView
         android:id="@+id/friendProfilePicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginStart="8dp"
         android:layout_marginBottom="56dp"
         app:layout_constraintBottom_toTopOf="@+id/tvperfil"
-        app:layout_constraintStart_toStartOf="@+id/tvperfil">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
     </com.facebook.login.widget.ProfilePictureView>
 
-    <TextView
-        android:id="@+id/tvperfil"
+    <com.facebook.share.widget.ShareButton
+        android:id="@+id/comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginBottom="50dp"
-        android:text="TextView"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/login_button"
-        app:layout_constraintStart_toStartOf="@+id/login_button" />
+        android:layout_marginTop="42dp"
+        android:enabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button">
+
+    </com.facebook.share.widget.ShareButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

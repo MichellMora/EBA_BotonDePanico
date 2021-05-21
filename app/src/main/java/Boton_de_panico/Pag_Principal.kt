@@ -3,11 +3,13 @@ package Boton_de_panico
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.firestore.FirebaseFirestore
+import com.proyecto.ebabotndepnico.ConexionFacebook
 import com.proyecto.ebabotndepnico.R
 import com.proyecto.ebabotndepnico.btn_edit
 import com.proyecto.ebabotndepnico.datos_socio
@@ -32,6 +35,7 @@ class Pag_Principal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pag__principal)
 
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         solicitarPermisos()
         enviarSMS()
@@ -39,6 +43,7 @@ class Pag_Principal : AppCompatActivity() {
         val bundle = intent.extras
         val ID = bundle?.getString("ID")
         val correo = bundle?.getString("correo")
+
         val IDbtn1 = bd.collection("usuarios")
                 .document(ID.toString()).collection("botones")
                 .document("jRHaBP85jYEEPZjHhlEP").id
@@ -54,6 +59,9 @@ class Pag_Principal : AppCompatActivity() {
         val IDbtn4 = bd.collection("usuarios")
                 .document(ID.toString()).collection("botones")
                 .document("RaaaBnnIUawPjsiKke0k").id
+
+        facebook(ID.toString())
+        whatsApp(ID.toString())
 
         mostrarDatos(ID.toString(),IDbtn1,btnMSJ1)
         mostrarDatos(ID.toString(),IDbtn2,btnMSJ2)
@@ -74,7 +82,6 @@ class Pag_Principal : AppCompatActivity() {
             }
             startActivity(perfil)
         }
-
 
     }
 
@@ -147,7 +154,7 @@ class Pag_Principal : AppCompatActivity() {
                 .collection("botones").document(IDbtn1)
                 .collection("contactos").document("NYLVhTBV7mTYuUwkcsRE").id
 
-        btnMSJ1.setOnClickListener {btnMSJ(ID.toString(),IDbtn1,IDcont1,IDcont2,IDcont3,IDcont4) }
+        btnMSJ1.setOnClickListener {btnMSJ(ID.toString(),IDbtn1,IDcont1,IDcont2,IDcont3,IDcont4)}
 
         btnMSJ2.setOnClickListener { btnMSJ(ID.toString(), IDbtn2, IDcont1, IDcont2, IDcont3, IDcont4) }
 
@@ -226,6 +233,7 @@ class Pag_Principal : AppCompatActivity() {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
+
         fusedLocationProviderClient.lastLocation
                 .addOnSuccessListener { location ->
                     if (location != null) {
@@ -239,11 +247,13 @@ class Pag_Principal : AppCompatActivity() {
                                     if (document.exists()) {
                                         if (MSJ.isEmpty()){
                                             Log.d("MSj", "El mensaje esta vacio")
+
                                         }else{
+
                                             var contacto = document.getString("Telefono")
                                             var cont = SmsManager.getDefault()
                                             cont.sendTextMessage(contacto.toString(),
-                                                    null, MSJ + "https://maps.google.com/maps?q=${lat}${lon}" , null, null)
+                                                    null, MSJ + "https://maps.google.com/maps?q=${lat},${lon}" , null, null)
                                         }
 
                                     }else {
@@ -259,36 +269,35 @@ class Pag_Principal : AppCompatActivity() {
                     }
                 }
 
-        /*bd.collection("usuarios").document(ID.toString())
-                .collection("botones").document(IDbtn)
-                .collection("contactos").document(IDcont).get().addOnSuccessListener { document ->
-                    if (document.exists()) {
-                        if (MSJ.isEmpty()){
-                            Log.d("MSj", "El mensaje esta vacio")
-                        }else{
-                            var contacto = document.getString("Telefono")
-                            var cont = SmsManager.getDefault()
-                            cont.sendTextMessage(contacto.toString(),
-                                    null, MSJ , null, null)
-                        }
 
-                    }else {
-
-                        Log.d("Contacto","Contacto no existe")
-
-                    }
-
-                }*/
 
     }
 
-    //Ubicación
+    private fun facebook(ID: String){
+        logoface.setOnClickListener{
+           if(btnMSJ1.text.toString().isBlank()){
+               Toast.makeText(this,"Debes configurar el boton 1, para poder hacer uso de las redes sociales",Toast.LENGTH_LONG).show()
+           }else{
 
-  /*  private fun ubicacion(){
+               val r_social = Intent(this, ConexionFacebook::class.java).apply {
+                   putExtra("ID", ID)
+               }
+               startActivity(r_social)
+
+           }
+
+        }
+    }
+
+    private fun whatsApp(ID: String) {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -298,26 +307,39 @@ class Pag_Principal : AppCompatActivity() {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
-            fusedLocationProviderClient.lastLocation
-                .addOnSuccessListener { location ->
-                    if (location != null) {
-                        val lat = location.latitude
-                        val lon = location.longitude
-                        Log.d("Ubicacion", "$lat  $lon");
 
-                        btnMSJ1.setOnClickListener {
-                            //val mapa = Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.com/maps?q=${lat} ${lon}"))
-                            var cont = SmsManager.getDefault()
-                            cont.sendTextMessage("3015935096",
-                                    null, "Ubicación actual" + "https://maps.google.com/maps?q=${lat} , ${lon}", null, null)
-                            //startActivity(mapa)
-                        }
+        bd.collection("usuarios").document(ID)
+            .collection("botones").document("jRHaBP85jYEEPZjHhlEP").get()
+            .addOnSuccessListener { documento ->
+                val mensaje: String? = documento.getString("Mensaje")
+                logowhats.setOnClickListener {
+                    if (btnMSJ1.text.toString().isBlank()) {
+                        Toast.makeText(
+                            this,
+                            "Debes configurar el boton 1, para poder hacer uso de las redes sociales",
+                            Toast.LENGTH_LONG
+                        ).show()
 
+                    } else {
 
-                    }else{
-                        Log.d("Ubicacion", "No encontrada");
+                        fusedLocationProviderClient.lastLocation
+                            .addOnSuccessListener { location ->
+                                if (location != null) {
+                                    val lat = location.latitude
+                                    val lon = location.longitude
+
+                                    val sendIntent = Intent()
+                                    sendIntent.action = Intent.ACTION_VIEW
+                                    val uri =
+                                        "whatsapp://send?phone=" + "&text=" + mensaje +" " +"https://maps.google.com/maps?q=${lat},${lon}"
+                                    sendIntent.data = Uri.parse(uri)
+                                    startActivity(sendIntent)
+
+                                }
+                            }
                     }
                 }
+            }
+    }
 
-    }*/
 }

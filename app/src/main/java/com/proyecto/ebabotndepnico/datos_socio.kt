@@ -27,8 +27,14 @@ class datos_socio : AppCompatActivity() {
         val ID = bundle?.getString("ID")
         registro(correo.toString(),ID.toString())
 
+        btnelm.setOnClickListener {
+            bd.collection("usuarios").document(ID.toString()).delete()
 
-        val lista = listOf("Femenino", "Maculino", "Otro")
+
+        }
+
+
+        val lista = listOf("Femenino", "Masculino", "Otro")
         opciones = findViewById(R.id.etGenero)
         val adaptador = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista)
         opciones.adapter = adaptador
@@ -100,5 +106,7 @@ class datos_socio : AppCompatActivity() {
 
         startActivity(registro)
     }
+
+
 }
 

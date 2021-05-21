@@ -29,72 +29,47 @@ class btn_edit : AppCompatActivity() {
         DatosRobo(ID.toString())
         DatosAlzheimer(ID.toString())
 
-    }
-
-    private fun red_social(ID:String,IDbtn:String, msj:String, nomBoton:String){
-        val r_social = Intent(this, ConexionFacebook::class.java).apply {
-            putExtra("ID", ID)
-            putExtra("IDbtn", IDbtn)
-            putExtra("msj", msj)
-            putExtra("nomBoton", nomBoton)
-        }
-        startActivity(r_social)
-    }
-
-    private fun P_Principal(ID:String,IDbtn:String, msj:String, nomBoton:String){
-
-        TraerDatosContactos(ID,
-                IDbtn)
-
-        if(btn1.text.isEmpty() && btn3.text.isEmpty() && btn2.text.isEmpty() && btn4.text.isEmpty() )
-        {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Error")
-            builder.setMessage("Debes tener minimo un botón de pánico para continuar")
-            builder.setPositiveButton("Aceptar", null)
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
-        }
-        else
-        {
-            val bundle = intent.extras
-            val correo = bundle?.getString("correo")
-
-            val Pa_Principal = Intent(this, Pag_Principal::class.java).apply {
-                putExtra("correo", correo)
-                Log.d("Correo", correo.toString())
-                putExtra("ID", ID)
-                putExtra("IDbtn", IDbtn)
-                putExtra("msj", msj)
-                putExtra("nomBoton", nomBoton)
-            }
-
-            startActivity(Pa_Principal)
+        btnFace.setOnClickListener {
+            red_social(ID.toString())
         }
 
     }
+
 
 
     private fun enviarDatosBtn(ID: String, IDbtn: String, msj:String, nomBoton:String){
 
         btnSigPr.setOnClickListener{
 
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Registro redes sociales")
-            builder.setMessage("¿Desea Registrar sus redes sociales?")
-            with(builder){
-                setPositiveButton("Sí"){
-                    dialog, which ->
-                    red_social(ID, IDbtn, msj, nomBoton)
-                }
+            TraerDatosContactos(ID,
+                    IDbtn)
 
-                setNegativeButton("No"){
-                    dialog, which->
-                    P_Principal(ID,IDbtn,msj,nomBoton)
-                }
+            if(btn1.text.isEmpty() && btn3.text.isEmpty() && btn2.text.isEmpty() && btn4.text.isEmpty() )
+            {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Error")
+                builder.setMessage("Debes tener minimo un botón de pánico para continuar")
+                builder.setPositiveButton("Aceptar", null)
                 val dialog: AlertDialog = builder.create()
                 dialog.show()
             }
+            else
+            {
+                val bundle = intent.extras
+                val correo = bundle?.getString("correo")
+
+                val Pa_Principal = Intent(this, Pag_Principal::class.java).apply {
+                    putExtra("correo", correo)
+                    Log.d("Correo", correo.toString())
+                    putExtra("ID", ID)
+                    putExtra("IDbtn", IDbtn)
+                    putExtra("msj", msj)
+                    putExtra("nomBoton", nomBoton)
+                }
+
+                startActivity(Pa_Principal)
+            }
+
 
         }
 
@@ -280,6 +255,12 @@ class btn_edit : AppCompatActivity() {
         startActivity(registro)
     }
 
+    private fun red_social(ID:String){
+        val r_social = Intent(this, ConexionFacebook::class.java).apply {
+            putExtra("ID", ID)
+        }
+        startActivity(r_social)
+    }
 
 
     private  fun  boton(btn:Button,ID:String, IDbtn1:String, msjbtn:TextView){
