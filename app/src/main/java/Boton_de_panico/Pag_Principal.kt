@@ -17,7 +17,6 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.firestore.FirebaseFirestore
-import com.proyecto.ebabotndepnico.ConexionFacebook
 import com.proyecto.ebabotndepnico.R
 import com.proyecto.ebabotndepnico.btn_edit
 import com.proyecto.ebabotndepnico.datos_socio
@@ -62,6 +61,7 @@ class Pag_Principal : AppCompatActivity() {
 
         facebook(ID.toString())
         whatsApp(ID.toString())
+        vistaBoton(ID.toString())
 
         mostrarDatos(ID.toString(),IDbtn1,btnMSJ1)
         mostrarDatos(ID.toString(),IDbtn2,btnMSJ2)
@@ -334,12 +334,25 @@ class Pag_Principal : AppCompatActivity() {
                                         "whatsapp://send?phone=" + "&text=" + mensaje +" " +"https://maps.google.com/maps?q=${lat},${lon}"
                                     sendIntent.data = Uri.parse(uri)
                                     startActivity(sendIntent)
+                                }
 
                                 }
                             }
                     }
                 }
             }
+
+    private fun vistaBoton(ID:String){
+
+        btnvistaBoton.setOnClickListener {
+
+            val v_Boton = Intent(this, Vista_Boton::class.java).apply {
+                putExtra("ID", ID)
+            }
+            startActivity(v_Boton)
+
+
+        }
     }
 
 }

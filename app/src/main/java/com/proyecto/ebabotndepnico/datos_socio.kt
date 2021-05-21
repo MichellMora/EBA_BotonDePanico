@@ -7,8 +7,12 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_datos_socio.*
+
 
 class datos_socio : AppCompatActivity() {
 
@@ -26,10 +30,10 @@ class datos_socio : AppCompatActivity() {
         val correo = bundle?.getString("correo")
         val ID = bundle?.getString("ID")
         registro(correo.toString(),ID.toString())
+        mostrar_datos(ID.toString())
 
         btnelm.setOnClickListener {
-            bd.collection("usuarios").document(ID.toString()).delete()
-
+            eliminar(ID.toString())
 
         }
 
@@ -105,6 +109,56 @@ class datos_socio : AppCompatActivity() {
         }
 
         startActivity(registro)
+    }
+
+    private fun mostrar_datos(ID:String){
+
+        bd.collection("usuarios").document(ID)
+                .get().addOnSuccessListener { documento ->
+
+                    if(documento.exists()){
+                        var Nombre = documento.getString("nombre")
+                        var Edad = documento.getString("edad")
+                        var Genero = documento.getString("genero")
+
+                        etNombre.setText(Nombre)
+                        etEdad.setText(Edad)
+                        etGenero2.setText(Genero)
+                    }
+
+
+                }
+
+    }
+
+    private fun eliminar(ID:String){
+
+        bd.collection("usuarios").document(ID).delete()
+
+        val auth=  FirebaseAuth.getInstance()
+
+       val user: FirebaseUser? = auth.currentUser
+
+        user?.delete()
+                ?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("ELM", "User account deleted.")
+                    }
+                }
+
+
+        etNombre.setText("")
+        etEdad.setText("")
+        etGenero2.setText("")
+
+
+        val Inicio = Intent(this, Autenticar()::class.java).apply {
+            putExtra("ID",ID)
+        }
+
+        startActivity(Inicio)
+
+
     }
 
 

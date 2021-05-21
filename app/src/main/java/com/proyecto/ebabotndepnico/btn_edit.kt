@@ -1,5 +1,6 @@
 package com.proyecto.ebabotndepnico
 
+import Boton_de_panico.ConexionFacebook
 import Boton_de_panico.Pag_Principal
 import android.content.Intent
 import android.os.Bundle

@@ -1,6 +1,7 @@
-package com.proyecto.ebabotndepnico;
+package Boton_de_panico;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -20,7 +21,9 @@ import com.facebook.share.widget.ShareButton;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.proyecto.ebabotndepnico.R;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,6 +40,8 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.xml.transform.Result;
 
 import Boton_de_panico.Pag_Principal;
 
@@ -267,5 +272,7 @@ public class ConexionFacebook extends AppCompatActivity {
 
 
     }
+
+
 
 }

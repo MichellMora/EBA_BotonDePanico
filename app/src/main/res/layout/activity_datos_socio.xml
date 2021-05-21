@@ -10,62 +10,67 @@
 
     <TextView
         android:id="@+id/tv"
-        android:layout_width="0dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginBottom="21dp"
+        android:layout_width="289dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
         android:text="Datos Personales"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnAct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/verde"
         android:text="Guardar"
-        app:layout_constraintBottom_toBottomOf="@+id/btnelm"
-        app:layout_constraintStart_toEndOf="@+id/btnelm" />
+        app:layout_constraintBottom_toBottomOf="@+id/btnBotonEdit"
+        app:layout_constraintEnd_toStartOf="@+id/btnelm"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnelm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginBottom="129dp"
         android:backgroundTint="@color/verde"
         android:text="Eliminar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnBotonEdit"
+        app:layout_constraintEnd_toStartOf="@+id/btnBotonEdit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAct" />
 
     <Button
         android:id="@+id/btnBotonEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginBottom="75dp"
         android:backgroundTint="@color/verde"
         android:text="Siguiente"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnelm"
-        app:layout_constraintTop_toBottomOf="@+id/btnelm" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="55dp"
         android:foregroundGravity="center"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btnAct"
+        app:layout_constraintBottom_toTopOf="@+id/btnBotonEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,6 +144,13 @@
                 android:gravity="center"
                 android:scrollbarSize="20dp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/etGenero2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="30dp" />
 
     </LinearLayout>
 
