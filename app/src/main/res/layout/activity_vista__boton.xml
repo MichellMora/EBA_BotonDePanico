@@ -16,16 +16,9 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvt">
-
-        <Button
-            android:id="@+id/btnInicio"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Inicio" />
 
         <Button
             android:id="@+id/btnNot"
@@ -43,7 +36,7 @@
         android:layout_marginTop="150dp"
         android:layout_marginBottom="57dp"
         android:gravity="center"
-        android:text="¿Donde deseas activar el botón de pánico?"
+        android:text="¿Deseas acceso directo a  los botones?"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintStart_toStartOf="parent"
