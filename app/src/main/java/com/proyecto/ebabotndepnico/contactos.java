@@ -21,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.net.IDN;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,17 +40,19 @@ public class contactos extends AppCompatActivity {
 
     EditText etNombreCon, etTel;
     FloatingActionButton btnCont1;
-    FloatingActionButton btnCont2;
-    FloatingActionButton btnCont3;
-    FloatingActionButton btnCont4;
 
-    Button btnGuardarCon;
+
     Button btnVolver;
 
     FloatingActionButton btnListo1;
     FloatingActionButton btnListo2;
     FloatingActionButton btnListo3;
     FloatingActionButton btnListo4;
+
+    FloatingActionButton btnelm1;
+    FloatingActionButton btnelm2;
+    FloatingActionButton btnelm3;
+    FloatingActionButton btnelm4;
 
 
     FirebaseFirestore bd;
@@ -80,21 +83,55 @@ public class contactos extends AppCompatActivity {
         btnListo3 = findViewById(R.id.btnListo3);
         btnListo4 = findViewById(R.id.btnListo4);
 
-        btnVolver = findViewById(R.id.btnVolver);
-
-
-        bd = FirebaseFirestore.getInstance();
+        btnelm1 = findViewById(R.id.elm1);
+        btnelm2 = findViewById(R.id.elm2);
+        btnelm3 = findViewById(R.id.elm3);
+        btnelm4 = findViewById(R.id.elm4);
 
         Bundle bundle = this.getIntent().getExtras();
         String ID = bundle.getString("ID");
         String IDbtn = bundle.getString("IDbtn");
+
         volverBotones(ID);
+
+
+
+        elmcontacto(ID, IDbtn,"gnAxPhqOWTeh5TxAx9z3", btnelm1, contNom1, cont1);
+        elmcontacto(ID, IDbtn,"IqwbHuRrXp4dHkJEme3j", btnelm2,contNom2,cont2);
+        elmcontacto(ID, IDbtn,"f9CybwrIogVICsrYNVAO", btnelm3,contNom3,cont3);
+        elmcontacto(ID, IDbtn,"NYLVhTBV7mTYuUwkcsRE", btnelm4,contNom4, cont4);
+
+        //btnVolver = findViewById(R.id.btnVolver);
+
+
+        bd = FirebaseFirestore.getInstance();
+
 
 
         Contacto1(ID,IDbtn);
         Contacto2(ID,IDbtn);
         Contacto3(ID,IDbtn);
         Contacto4(ID,IDbtn);
+
+
+    }
+
+    private void elmcontacto(String ID,String IDbtn, String IDcont, FloatingActionButton elm, TextView contNom, TextView cont) {
+
+        elm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                bd.collection("usuarios").document(ID)
+                        .collection("botones").document(IDbtn)
+                        .collection("contactos").document(IDcont).delete();
+
+                btn_edit(ID);
+
+            }
+        });
+
+
 
     }
 
@@ -110,12 +147,6 @@ public class contactos extends AppCompatActivity {
 
         mostrarContacto1(ID,IDbtn,IDcontacto,contNom1,cont1);
 
-       /* btnCont1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                añadirContacto();
-            }
-        });*/
 
         btnListo1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,12 +170,6 @@ public class contactos extends AppCompatActivity {
 
         mostrarContacto1(ID,IDbtn,IDcontacto,contNom2,cont2);
 
-        /*btnCont2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                añadirContacto();
-            }
-        });*/
 
         btnListo2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,13 +193,6 @@ public class contactos extends AppCompatActivity {
 
         mostrarContacto1(ID,IDbtn,IDcontacto,contNom3,cont3);
 
-        /*btnCont3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                añadirContacto();
-            }
-        });*/
-
         btnListo3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,12 +215,6 @@ public class contactos extends AppCompatActivity {
 
         mostrarContacto1(ID,IDbtn,IDcontacto,contNom4,cont4);
 
-        /*btnCont4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                añadirContacto();
-            }
-        });*/
 
         btnListo4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -279,6 +291,8 @@ public class contactos extends AppCompatActivity {
     }
 
     public void volverBotones(String ID) {
+
+        btnVolver = findViewById(R.id.btnVolver);
 
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override

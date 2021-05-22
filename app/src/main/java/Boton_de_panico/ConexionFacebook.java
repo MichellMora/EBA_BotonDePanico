@@ -1,8 +1,9 @@
 package Boton_de_panico;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.FacebookCallback;
@@ -18,13 +19,18 @@ import com.facebook.share.Share;
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareButton;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.proyecto.ebabotndepnico.R;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,7 +62,7 @@ public class ConexionFacebook extends AppCompatActivity {
     FirebaseFirestore bd;
     ShareButton comp;
     Button btnVolver;
-
+    FusedLocationProviderClient fusedLocationProviderClient;
 
 
     @Override

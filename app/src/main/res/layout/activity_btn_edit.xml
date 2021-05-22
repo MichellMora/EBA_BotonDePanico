@@ -11,26 +11,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
+        android:layout_marginEnd="33dp"
         android:text="Configuración de botones"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddCont2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/msj4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="5dp"
         android:layout_weight="1"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/msj3"
+        app:layout_constraintBottom_toBottomOf="@+id/elm_btn4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/elm_btn4"
         app:layout_constraintTop_toTopOf="@+id/elm_btn3" />
@@ -253,28 +250,15 @@
 
     <Button
         android:id="@+id/btnSigPr"
-        android:layout_width="0dp"
+        android:layout_width="152dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginEnd="49dp"
+        android:layout_marginBottom="81dp"
         android:clickable="true"
         android:text="Guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnFace"
-        app:layout_constraintTop_toBottomOf="@+id/msj4" />
-
-    <Button
-        android:id="@+id/btnFace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="49dp"
-        android:layout_marginEnd="49dp"
-        android:text="Facebook"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSigPr"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/elm_btn3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,6 +61,15 @@
                 app:fabCustomSize="34dp"
                 app:maxImageSize="34dp" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/elm1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
+
 
         </LinearLayout>
 
@@ -100,6 +109,15 @@
                 app:fabCustomSize="34dp"
                 app:maxImageSize="34dp" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/elm2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -137,6 +155,16 @@
                 android:src="@drawable/ic_baseline_check_24"
                 app:fabCustomSize="34dp"
                 app:maxImageSize="34dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/elm3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -174,6 +202,15 @@
                 android:src="@drawable/ic_baseline_check_24"
                 app:fabCustomSize="34dp"
                 app:maxImageSize="34dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/elm4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
         </LinearLayout>
 
         <EditText

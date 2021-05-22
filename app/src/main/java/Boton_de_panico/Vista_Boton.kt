@@ -1,28 +1,17 @@
 package Boton_de_panico
 
-import android.Manifest
+
 import android.app.*
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Color
-import android.graphics.LightingColorFilter
-import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import bolts.Task
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.type.LatLng
 import com.proyecto.ebabotndepnico.R
-import kotlinx.android.synthetic.main.activity_pag__principal.*
 import kotlinx.android.synthetic.main.activity_vista__boton.*
 
 class Vista_Boton : AppCompatActivity() {
@@ -100,6 +89,7 @@ class Vista_Boton : AppCompatActivity() {
                     notificationManager.notify(notID, nm)
                 }
 
+
     }
 
     private fun crearCanal() {
@@ -119,5 +109,6 @@ class Vista_Boton : AppCompatActivity() {
         }
 
     }
+
 
 }

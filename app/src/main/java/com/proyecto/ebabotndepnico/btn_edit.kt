@@ -30,9 +30,6 @@ class btn_edit : AppCompatActivity() {
         DatosRobo(ID.toString())
         DatosAlzheimer(ID.toString())
 
-        btnFace.setOnClickListener {
-            red_social(ID.toString())
-        }
 
     }
 
@@ -255,14 +252,6 @@ class btn_edit : AppCompatActivity() {
 
         startActivity(registro)
     }
-
-    private fun red_social(ID:String){
-        val r_social = Intent(this, ConexionFacebook::class.java).apply {
-            putExtra("ID", ID)
-        }
-        startActivity(r_social)
-    }
-
 
     private  fun  boton(btn:Button,ID:String, IDbtn1:String, msjbtn:TextView){
 
