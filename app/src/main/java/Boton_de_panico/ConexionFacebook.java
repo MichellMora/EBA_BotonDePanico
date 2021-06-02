@@ -63,6 +63,10 @@ public class ConexionFacebook extends AppCompatActivity {
     ShareButton comp;
     Button btnVolver;
     FusedLocationProviderClient fusedLocationProviderClient;
+    Location location = null;
+    Double lat;
+    Double lon;
+
 
 
     @Override
@@ -264,7 +268,7 @@ public class ConexionFacebook extends AppCompatActivity {
                     toastCont.show();
 
                     ShareLinkContent slc = new ShareLinkContent.Builder()
-                            .setContentUrl(Uri.parse("www.google.com"))
+                            .setContentUrl(Uri.parse("https://www.google.com/maps/search/@4.6447329,-76.2123141,7z"))
                             .setShareHashtag(new ShareHashtag.Builder()
                                     .setHashtag("#"+ msj).build())
                             .build();

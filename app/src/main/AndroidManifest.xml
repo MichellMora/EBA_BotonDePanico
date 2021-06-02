@@ -21,9 +21,6 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EBABotónDePánico">
-        <activity
-            android:name=".App"
-            android:label="@string/title_activity_app"></activity>
         <activity android:name="Boton_de_panico.Vista_Boton"></activity>
         <activity android:name="Boton_de_panico.ConexionFacebook" />
 
