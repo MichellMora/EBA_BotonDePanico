@@ -41,6 +41,7 @@ class Pag_Principal : AppCompatActivity() {
 
         tipodePerfil()
 
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         solicitarPermisos()
         enviarSMS()
@@ -49,9 +50,12 @@ class Pag_Principal : AppCompatActivity() {
         val ID = bundle?.getString("ID")
         val correo = bundle?.getString("correo")
 
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+        facebook(ID.toString())
+        whatsApp(ID.toString())
+
+       /* val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
         prefs.putString("ID", ID)
-        prefs.apply()
+        prefs.apply()*/
 
         val IDbtn1 = bd.collection("usuarios")
                 .document(ID.toString()).collection("botones")
@@ -69,8 +73,6 @@ class Pag_Principal : AppCompatActivity() {
                 .document(ID.toString()).collection("botones")
                 .document("RaaaBnnIUawPjsiKke0k").id
 
-        facebook(ID.toString())
-        whatsApp(ID.toString())
 
         mostrarDatos(ID.toString(),IDbtn1,btnMSJ1)
         mostrarDatos(ID.toString(),IDbtn2,btnMSJ2)
@@ -135,10 +137,21 @@ class Pag_Principal : AppCompatActivity() {
                 &&  btnMSJ2.text.toString() == "Infarto"){
 
             title = "Preestablecido"
+            Toast.makeText(
+                    this,
+                    "Perfil Prestablecido",
+                    Toast.LENGTH_LONG
+            ).show()
         }
 
         else {
             title = "Personalizado"
+
+            Toast.makeText(
+                    this,
+                    "Perfil Personalizado",
+                    Toast.LENGTH_LONG
+            ).show()
         }
     }
 
