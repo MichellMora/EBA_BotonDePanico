@@ -3,6 +3,7 @@ package com.proyecto.ebabotndepnico
 import Boton_de_panico.ConexionFacebook
 import Boton_de_panico.Pag_Principal
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
@@ -19,6 +20,10 @@ class btn_edit : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_btn_edit)
+
+        title = "Editar Botones de Pánico"
+
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.actionbar_verde)))
 
         val bundle = intent.extras
         val ID = bundle?.getString("ID")
@@ -287,10 +292,9 @@ class btn_edit : AppCompatActivity() {
 
                         btn.text = etNombtn.text.toString()
                         msjbtn.text = etmsj.text.toString()
-
+                        añadirContacto(ID,IDbtn1)
 
                     }
-
 
                 }
 

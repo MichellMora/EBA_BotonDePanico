@@ -12,6 +12,7 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         TiempoSplash()
+        this.setTitle("EBA - Botón de Pánico");
     }
 
     private fun TiempoSplash(){

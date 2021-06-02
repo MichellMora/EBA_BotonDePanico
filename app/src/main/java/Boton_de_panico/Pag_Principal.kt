@@ -8,6 +8,8 @@ import android.os.Build
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -34,6 +36,9 @@ class Pag_Principal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pag__principal)
 
+        title = "EBA"
+
+        tipodePerfil()
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         solicitarPermisos()
@@ -61,28 +66,72 @@ class Pag_Principal : AppCompatActivity() {
 
         facebook(ID.toString())
         whatsApp(ID.toString())
-        vistaBoton(ID.toString())
 
         mostrarDatos(ID.toString(),IDbtn1,btnMSJ1)
         mostrarDatos(ID.toString(),IDbtn2,btnMSJ2)
         mostrarDatos(ID.toString(),IDbtn3,btnMSJ3)
         mostrarDatos(ID.toString(),IDbtn4,btnMSJ4)
 
-        config.setOnClickListener {
-            val conf = Intent(this, btn_edit::class.java).apply{
-                putExtra("ID", ID)
-            }
-            startActivity(conf)
-        }
 
-        perfil.setOnClickListener {
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val bundle = intent.extras
+        val ID = bundle?.getString("ID")
+        val correo = bundle?.getString("correo")
+
+        when (item.itemId){
+
+            R.id.salir_menu -> {
+                finish()
+            }
+
+            R.id.perfil_menu -> {
+
             val perfil = Intent(this, datos_socio::class.java).apply{
                 putExtra("correo", correo)
                 putExtra("ID", ID)
             }
             startActivity(perfil)
+
+            }
+
+            R.id.conf_menu -> {
+                val conf = Intent(this, btn_edit::class.java).apply{
+                    putExtra("ID", ID)
+                }
+                startActivity(conf)
+            }
+
+            R.id.not_menu -> {
+                vistaBoton(ID.toString())
+            }
+
         }
 
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun tipodePerfil(){
+        if (
+                btnMSJ1.text.toString() == "Acoso"
+                &&  btnMSJ3.text.toString() == "Robo"
+                &&  btnMSJ3.text.toString() == "Alzheimer"
+                &&  btnMSJ2.text.toString() == "Infarto"){
+
+            title = "Preestablecido"
+        }
+
+        else {
+            title = "Personalizado"
+        }
     }
 
     private fun mostrarDatos(ID: String, IDbtn: String, btn: Button) {
@@ -91,7 +140,24 @@ class Pag_Principal : AppCompatActivity() {
                 .collection("botones").document(IDbtn).get().addOnSuccessListener {
 
                     btn.setText(it.get("Nombre") as String?)
-                }}
+
+                    if (btn.text.toString() == "Acoso"){
+
+                        title = "Preestablecido"
+
+                    }
+
+                }
+
+        bd.collection("usuarios").document(ID).get().addOnSuccessListener {
+
+                tv_nombre.setText(it.get("nombre") as String?)
+
+            }
+
+    }
+
+
 
 
     private fun solicitarPermisos(){
@@ -344,15 +410,11 @@ class Pag_Principal : AppCompatActivity() {
 
     private fun vistaBoton(ID:String){
 
-        btnvistaBoton.setOnClickListener {
-
-            val v_Boton = Intent(this, Vista_Boton::class.java).apply {
-                putExtra("ID", ID)
-            }
-            startActivity(v_Boton)
-
-
+        val v_Boton = Intent(this, Vista_Boton::class.java).apply {
+            putExtra("ID", ID)
         }
+        startActivity(v_Boton)
+
     }
 
 }

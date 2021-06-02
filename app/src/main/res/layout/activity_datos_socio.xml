@@ -4,21 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gris"
+    android:background="@color/fondo_verde"
     tools:context=".datos_socio">
 
 
     <TextView
         android:id="@+id/tv"
-        android:layout_width="289dp"
-        android:layout_height="99dp"
-        android:layout_marginStart="61dp"
+        android:layout_width="334dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="34dp"
-        android:layout_marginEnd="61dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:text="Datos Personales"
+        android:text="DATOS PERSONALES"
+        android:textColor="@color/actionbar_verde"
         android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,50 +28,60 @@
 
     <Button
         android:id="@+id/btnAct"
-        android:layout_width="wrap_content"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/verde"
+        android:layout_marginBottom="11dp"
+        android:backgroundTint="@color/boton_verde"
         android:text="Guardar"
-        app:layout_constraintBottom_toBottomOf="@+id/btnBotonEdit"
-        app:layout_constraintEnd_toStartOf="@+id/btnelm"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnelm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/verde"
-        android:text="Eliminar"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnBotonEdit"
-        app:layout_constraintEnd_toStartOf="@+id/btnBotonEdit"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnAct" />
+        android:textColor="@color/actionbar_verde"
+        app:layout_constraintBottom_toTopOf="@+id/btnelm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:strokeColor="@color/actionbar_verde" />
 
     <Button
         android:id="@+id/btnBotonEdit"
-        android:layout_width="wrap_content"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="75dp"
-        android:backgroundTint="@color/verde"
+        android:layout_marginBottom="38dp"
+        android:backgroundTint="@color/boton_verde"
         android:text="Siguiente"
+        android:textColor="@color/actionbar_verde"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnelm"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnelm"
+        app:strokeColor="@color/actionbar_verde" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="55dp"
-        android:foregroundGravity="center"
-        android:gravity="center"
-        android:orientation="vertical"
+    <Button
+        android:id="@+id/btnelm"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:backgroundTint="@color/gris_claro"
+        android:text="Eliminar"
+        android:textColor="@color/gris"
         app:layout_constraintBottom_toTopOf="@+id/btnBotonEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAct"
+        app:strokeColor="@color/gris" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnAct"
+        app:layout_constraintEnd_toEndOf="@+id/tv"
+        app:layout_constraintStart_toStartOf="@+id/tv"
         app:layout_constraintTop_toBottomOf="@+id/tv">
 
         <LinearLayout
@@ -79,21 +91,27 @@
 
             <TextView
                 android:id="@+id/tvNombre"
-                android:layout_width="wrap_content"
+                android:layout_width="109dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Nombre"
-                android:textSize="20dp" />
+                android:text="NOMBRE"
+                android:textColor="@color/actionbar_verde"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="221dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/btn_transparente"
                 android:ems="10"
-                android:hint="Nombres y Apellidos"
-                android:inputType="textPersonName" />
+                android:gravity="center"
+                android:hint="Nombre y Apellido"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:textColor="@color/actionbar_verde2" />
 
         </LinearLayout>
 
@@ -104,21 +122,26 @@
 
             <TextView
                 android:id="@+id/tvEdad"
-                android:layout_width="wrap_content"
+                android:layout_width="85dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Edad"
-                android:textSize="20dp" />
+                android:text="EDAD"
+                android:textColor="@color/actionbar_verde"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEdad"
-                android:layout_width="184dp"
-                android:layout_height="match_parent"
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/btn_transparente"
                 android:ems="10"
                 android:hint="Edad"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/actionbar_verde2" />
 
         </LinearLayout>
 
@@ -129,28 +152,32 @@
 
             <TextView
                 android:id="@+id/tvEdad2"
-                android:layout_width="13dp"
+                android:layout_width="46dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Género"
-                android:textSize="20dp" />
+                android:text="GÉNERO"
+                android:textColor="@color/actionbar_verde"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/etGenero"
-                android:layout_width="150dp"
+                android:layout_width="58dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@color/actionbar_verde"
                 android:gravity="center"
-                android:scrollbarSize="20dp" />
-        </LinearLayout>
+                android:scrollbarSize="20dp"
+                android:textColor="@color/actionbar_verde2" />
 
-        <TextView
-            android:id="@+id/etGenero2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="30dp" />
+            <TextView
+                android:id="@+id/etGenero2"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20dp" />
+        </LinearLayout>
 
     </LinearLayout>
 

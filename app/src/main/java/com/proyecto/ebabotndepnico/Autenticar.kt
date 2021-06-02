@@ -2,6 +2,7 @@ package com.proyecto.ebabotndepnico
 
 import Boton_de_panico.Pag_Principal
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,10 @@ class Autenticar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_autenticar)
 
+        this.title = "EBA - Botón de Pánico"
+
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.actionbar_verde)))
+
         val analytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)
         val bundle = Bundle()
         bundle.putString("message", "Integración con Firebase completa")
@@ -24,10 +29,9 @@ class Autenticar : AppCompatActivity() {
     }
 
     private fun conf() {
-        title = "Bienvenido"
 
         btnReg.setOnClickListener {
-            if (etCorreo.text.isNotEmpty() && etPass.text.isNotEmpty()) {
+            if (etCorreo.text!!.isNotEmpty() && etPass.text!!.isNotEmpty()) {
 
 
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
@@ -49,7 +53,7 @@ class Autenticar : AppCompatActivity() {
         }
 
        btnIng.setOnClickListener {
-            if (etCorreo.text.isNotEmpty() && etPass.text.isNotEmpty()) {
+            if (etCorreo.text!!.isNotEmpty() && etPass.text!!.isNotEmpty()) {
 
                 FirebaseAuth.getInstance()
                     .signInWithEmailAndPassword(

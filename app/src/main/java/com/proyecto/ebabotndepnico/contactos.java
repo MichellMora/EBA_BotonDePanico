@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -63,8 +64,7 @@ public class contactos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactos);
 
-        this.setTitle("Configuración Aplicativo 2/4");
-
+        this.setTitle("Contactos");
 
         etNombreCon = findViewById(R.id.etNombreCont);
         etTel = findViewById(R.id.etTel);
@@ -106,12 +106,11 @@ public class contactos extends AppCompatActivity {
 
         bd = FirebaseFirestore.getInstance();
 
-
-
         Contacto1(ID,IDbtn);
         Contacto2(ID,IDbtn);
         Contacto3(ID,IDbtn);
         Contacto4(ID,IDbtn);
+
 
 
     }
@@ -132,12 +131,11 @@ public class contactos extends AppCompatActivity {
         });
 
 
-
     }
 
     public void Contacto1(String ID, String IDbtn) {
 
-        cont1 = findViewById(R.id.cont1);
+        //cont1 = findViewById(R.id.cont1);
         contNom1 = findViewById(R.id.contNom1);
 
         String IDcontacto =  bd.collection("usuarios").document(ID)
@@ -145,13 +143,13 @@ public class contactos extends AppCompatActivity {
                 .collection("contactos").document("gnAxPhqOWTeh5TxAx9z3")
                 .getId();
 
-        mostrarContacto1(ID,IDbtn,IDcontacto,contNom1,cont1);
+        mostrarContacto1(ID,IDbtn,IDcontacto,contNom1);
 
 
         btnListo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                guardarContacto1(ID,IDbtn,IDcontacto,contNom1,cont1);
+                guardarContacto1(ID,IDbtn,IDcontacto,contNom1);
             }
         });
 
@@ -159,7 +157,6 @@ public class contactos extends AppCompatActivity {
 
     public void Contacto2(String ID, String IDbtn) {
 
-        cont2 = findViewById(R.id.cont2);
         contNom2 = findViewById(R.id.contNom2);
 
 
@@ -168,13 +165,13 @@ public class contactos extends AppCompatActivity {
                 .collection("contactos").document("IqwbHuRrXp4dHkJEme3j")
                 .getId();
 
-        mostrarContacto1(ID,IDbtn,IDcontacto,contNom2,cont2);
+        mostrarContacto1(ID,IDbtn,IDcontacto,contNom2);
 
 
         btnListo2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                guardarContacto1(ID,IDbtn,IDcontacto,contNom2,cont2);
+                guardarContacto1(ID,IDbtn,IDcontacto,contNom2);
             }
         });
 
@@ -183,7 +180,6 @@ public class contactos extends AppCompatActivity {
 
     public void Contacto3(String ID, String IDbtn) {
 
-        cont3 = findViewById(R.id.cont3);
         contNom3 = findViewById(R.id.contNom3);
 
         String IDcontacto = bd.collection("usuarios").document(ID)
@@ -191,12 +187,12 @@ public class contactos extends AppCompatActivity {
                 .collection("contactos").document("f9CybwrIogVICsrYNVAO")
                 .getId();
 
-        mostrarContacto1(ID,IDbtn,IDcontacto,contNom3,cont3);
+        mostrarContacto1(ID,IDbtn,IDcontacto,contNom3);
 
         btnListo3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                guardarContacto1(ID,IDbtn,IDcontacto,contNom3,cont3);
+                guardarContacto1(ID,IDbtn,IDcontacto,contNom3);
             }
         });
 
@@ -205,7 +201,6 @@ public class contactos extends AppCompatActivity {
 
     public void Contacto4(String ID, String IDbtn) {
 
-        cont4 = findViewById(R.id.cont4);
         contNom4 = findViewById(R.id.contNom4);
 
         String IDcontacto = bd.collection("usuarios").document(ID)
@@ -213,19 +208,19 @@ public class contactos extends AppCompatActivity {
                 .collection("contactos").document("NYLVhTBV7mTYuUwkcsRE")
                 .getId();
 
-        mostrarContacto1(ID,IDbtn,IDcontacto,contNom4,cont4);
+        mostrarContacto1(ID,IDbtn,IDcontacto,contNom4);
 
 
         btnListo4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                guardarContacto1(ID,IDbtn,IDcontacto,contNom4,cont4);
+                guardarContacto1(ID,IDbtn,IDcontacto,contNom4);
             }
         });
     }
 
 
-    public void mostrarContacto1(String ID, String IDbtn,String IDcontacto, TextView contNom, TextView cont){
+    public void mostrarContacto1(String ID, String IDbtn,String IDcontacto, TextView contNom){
 
         Log.d("IDconMostrar" , IDcontacto);
 
@@ -240,14 +235,45 @@ public class contactos extends AppCompatActivity {
                     String nombre = documentSnapshot.getString("Nombre");
                     String telefono = documentSnapshot.getString("Telefono");
                     contNom.setText(nombre);
-                    cont.setText(telefono);
+                    mostrar(ID,IDbtn,IDcontacto,contNom);
                 }
             }
         });
 
     }
 
-    public void guardarContacto1(String ID, String IDbtn, String IDcontacto, TextView contNom, TextView cont) {
+    public void mostrar(String ID, String IDbtn,String IDcontacto, TextView contNom){
+
+        contNom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("IDconMostrar" , IDcontacto);
+
+                bd.collection("usuarios").document(ID)
+                        .collection("botones").document(IDbtn)
+                        .collection("contactos").document(IDcontacto)
+                        .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        if (documentSnapshot.exists()){
+                            String nombre = documentSnapshot.getString("Nombre");
+                            String telefono = documentSnapshot.getString("Telefono");
+                            etNombreCon.setText(nombre);
+                            etTel.setText(telefono);
+                        }
+                    }
+                });
+
+
+            }
+        });
+
+    }
+
+
+    public void guardarContacto1(String ID, String IDbtn, String IDcontacto, TextView contNom) {
 
         Log.d("IDconguardarContacto", IDcontacto);
 
@@ -279,7 +305,7 @@ public class contactos extends AppCompatActivity {
                 }
             });
         }
-        mostrarContacto1(ID,IDbtn,IDcontacto,contNom,cont);
+        mostrarContacto1(ID,IDbtn,IDcontacto,contNom);
     }
 
     public void añadirContacto() {
@@ -297,22 +323,9 @@ public class contactos extends AppCompatActivity {
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (contNom1.getText().toString().isEmpty()
-                        && contNom2.getText().toString().isEmpty()
-                        && contNom3.getText().toString().isEmpty()
-                        && contNom4.getText().toString().isEmpty()){
-
-                    Toast.makeText(contactos.this, "Debes tener mínimo un contacto registrado", Toast.LENGTH_SHORT).show();
-
-                }
-
-                else{
-
-                    btn_edit(ID);
-                }
-
+                btn_edit(ID);
             }
+
         });
 
     }
@@ -359,7 +372,7 @@ public class contactos extends AppCompatActivity {
     public void msjContactoAñadido() {
         Toast toastCont =
                 Toast.makeText(getApplicationContext(),
-                        "Contactos Añadido", Toast.LENGTH_SHORT);
+                        "Contacto Añadido", Toast.LENGTH_SHORT);
 
         toastCont.show();
     }

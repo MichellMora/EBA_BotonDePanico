@@ -4,130 +4,165 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fondo_azul"
+    android:padding="10dp"
     tools:context="Boton_de_panico.Pag_Principal">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="25dp"
+        android:layout_width="154dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="79dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/logoface"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4">
+        app:layout_constraintTop_toBottomOf="@+id/btnMSJ4">
 
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnMSJ1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/logowhats"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/logowhats" />
 
-            <Button
-                android:id="@+id/btnMSJ2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+            <Space
+                android:layout_width="47dp"
+                android:layout_height="30dp" />
 
+            <ImageView
+                android:id="@+id/logoface"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                app:srcCompat="@drawable/logoface" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="214dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnMSJ3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
 
-            <Button
-                android:id="@+id/btnMSJ4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btnvistaBoton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Vista de botones" />
 
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/config"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:id="@+id/btnMSJ4"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="55dp"
         android:layout_weight="1"
-        android:text="Configuración"
-        app:layout_constraintBaseline_toBaselineOf="@+id/perfil"
-        app:layout_constraintEnd_toStartOf="@+id/perfil"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/perfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="62dp"
-        android:layout_weight="1"
-        android:text="Perfil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/config"
-        app:layout_constraintTop_toBottomOf="@+id/logoface" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="177dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginBottom="69dp"
+        android:backgroundTint="@color/boton_azul"
+        android:textColor="@color/actionbar_azul"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintStart_toEndOf="@+id/btnMSJ3"
+        app:layout_constraintTop_toBottomOf="@+id/btnMSJ2"
+        app:strokeColor="@color/actionbar_azul" />
 
-    <ImageView
-        android:id="@+id/logowhats"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/logoface"
+    <Button
+        android:id="@+id/btnMSJ1"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="50dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/boton_azul"
+        android:textColor="@color/actionbar_azul"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnMSJ2"
+        app:layout_constraintEnd_toStartOf="@+id/btnMSJ2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/actionbar_azul" />
+
+    <Button
+        android:id="@+id/btnMSJ3"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="53dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/boton_azul"
+        android:textColor="@color/actionbar_azul"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnMSJ4"
+        app:layout_constraintEnd_toStartOf="@+id/btnMSJ4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/actionbar_azul" />
+
+    <Button
+        android:id="@+id/btnMSJ2"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="39dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/boton_azul"
+        android:textColor="@color/actionbar_azul"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnMSJ4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/logoface"
-        app:layout_constraintTop_toTopOf="@+id/logoface"
-        app:srcCompat="@drawable/logowhats" />
+        app:layout_constraintStart_toEndOf="@+id/btnMSJ1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nombre"
+        app:strokeColor="@color/actionbar_azul" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="28dp"
+        android:gravity="center"
+        android:text="BIENVENID@"
+        android:textColor="@color/actionbar_azul"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_nombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/tv_nombre"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/actionbar_azul"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnMSJ2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <ImageView
-        android:id="@+id/logoface"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="61dp"
-        app:layout_constraintBottom_toTopOf="@+id/perfil"
-        app:layout_constraintEnd_toStartOf="@+id/logowhats"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        app:srcCompat="@drawable/logoface" />
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_perfil" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

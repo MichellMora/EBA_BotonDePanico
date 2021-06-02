@@ -1,6 +1,7 @@
 package com.proyecto.ebabotndepnico
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -24,7 +25,9 @@ class datos_socio : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_datos_socio)
 
-        title = "Configuración Aplicativo 1/4"
+        title = "Información Personal"
+
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.actionbar_verde)))
 
         val bundle = intent.extras
         val correo = bundle?.getString("correo")
@@ -33,7 +36,7 @@ class datos_socio : AppCompatActivity() {
         mostrar_datos(ID.toString())
 
         btnelm.setOnClickListener {
-            eliminar(ID.toString())
+            elm_p(ID.toString())
 
         }
 
@@ -50,7 +53,7 @@ class datos_socio : AppCompatActivity() {
     private fun registro(correo:String, ID: String) {
 
         btnAct.setOnClickListener {
-            if (etNombre.text.isNotEmpty() && etEdad.text.isNotEmpty() && etGenero.isClickable) {
+            if (etNombre.text!!.isNotEmpty() && etEdad.text!!.isNotEmpty() && etGenero.isClickable) {
                 //var ID = bd.collection("usuarios").document().id
                 bd.collection("usuarios").document(ID).set(
                     hashMapOf("nombre" to etNombre.text.toString(),
@@ -131,7 +134,30 @@ class datos_socio : AppCompatActivity() {
 
     }
 
+    private fun elm_p(ID: String){
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Eliminar cuenta")
+        builder.setMessage("Se eliminaran tus datos de EBA y no podras volver a ingresar \n " +
+                "¿Estas seguro de eliminar tu cuenta?")
+        with(builder){
+            setPositiveButton("Sí"){
+                    dialog, which ->
+                eliminar(ID)
+            }
+            setNegativeButton("No"){
+                    dialog, which->
+            }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
+
+    }
+
     private fun eliminar(ID:String){
+
+
+
 
         bd.collection("usuarios").document(ID).delete()
 
