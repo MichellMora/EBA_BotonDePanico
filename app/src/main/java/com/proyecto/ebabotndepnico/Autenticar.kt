@@ -1,9 +1,11 @@
 package com.proyecto.ebabotndepnico
 
 import Boton_de_panico.Pag_Principal
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -26,6 +28,17 @@ class Autenticar : AppCompatActivity() {
         analytics.logEvent("InitScreen", bundle)
 
         conf();
+        sesion()
+
+    }
+
+    private fun sesion() {
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        val IDnt = prefs.getString("ID", null)
+
+        if (IDnt != null){
+            pag_Principal(correo = "", ID = IDnt)
+        }
     }
 
     private fun conf() {

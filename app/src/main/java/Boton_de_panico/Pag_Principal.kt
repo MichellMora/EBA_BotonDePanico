@@ -1,6 +1,7 @@
 package Boton_de_panico
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -48,6 +49,10 @@ class Pag_Principal : AppCompatActivity() {
         val ID = bundle?.getString("ID")
         val correo = bundle?.getString("correo")
 
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+        prefs.putString("ID", ID)
+        prefs.apply()
+
         val IDbtn1 = bd.collection("usuarios")
                 .document(ID.toString()).collection("botones")
                 .document("jRHaBP85jYEEPZjHhlEP").id
@@ -89,6 +94,9 @@ class Pag_Principal : AppCompatActivity() {
         when (item.itemId){
 
             R.id.salir_menu -> {
+                val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+                prefs.clear()
+                prefs.apply()
                 finish()
             }
 

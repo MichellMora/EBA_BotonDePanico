@@ -267,6 +267,14 @@ class btn_edit : AppCompatActivity() {
             val etNombtn =confBtn.findViewById<EditText>(R.id.etNombrebtn)
             val etmsj = confBtn.findViewById<EditText>(R.id.etMsjBtn)
 
+            bd.collection("usuarios").document(ID)
+                    .collection("botones").document(IDbtn1)
+                    .get().addOnSuccessListener {
+
+                        etNombtn.setText(it.get("Nombre") as String?)
+                        etmsj.setText(it.get("Mensaje") as String?)
+                    }
+
             with(builder){
                 setPositiveButton("OK"){
                     dialog, which ->
